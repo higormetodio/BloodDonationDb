@@ -21,6 +21,8 @@ public class Donor : BaseEntity
     public Gender Gender { get; private set; }
     public int Weight { get; private set; }
     public bool IsDonor { get; private set; }
+    public DateTime LastDonation { get; private set; }
+    public DateTime NextDonation { get; private set; }
     public int BloodId { get; private set; }
     public Blood Blood { get; private set; }
 
@@ -53,5 +55,12 @@ public class Donor : BaseEntity
         }
 
         return false;
+    }
+
+    public void UpdateLastDonation(DateTime lastDonation)
+    {
+        LastDonation = lastDonation;
+
+        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? 90 : 60);
     }
 }
