@@ -7,11 +7,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Repositories\DonationDonor\" />
+    <PackageReference Include="MediatR" Version="12.4.1" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="MediatR" Version="12.4.1" />
+    <ProjectReference Include="..\..\Backend\BloodDonationDb.Domain\BloodDonationDb.Domain.csproj" />
   </ItemGroup>
 
 </Project>
