@@ -1,10 +1,12 @@
 using BloodDonationDb.Domain.Enums;
+using BloodDonationDb.Domain.SeedWorks;
+using BloodDonationDb.Domain.ValueObjects;
 
 namespace BloodDonationDb.Domain.Entities;
 
-public class Donor : BaseEntity
+public class Donor : Entity, IAggregateRoot
 {
-    public Donor(string name, string email, DateTime birthDate, Gender gender, int weight, int bloodId)
+    public Donor(string name, string email, DateTime birthDate, Gender gender, int weight, BloodType bloodType, RhFactor rhFactor, Address address)
     {
         Name = name;
         Email = email;
@@ -12,55 +14,51 @@ public class Donor : BaseEntity
         Gender = gender;
         Weight = weight;
         IsDonor = CanBeADonor(birthDate);
-        BloodId = bloodId;
+        BloodType = bloodType;
+        RhFactor = rhFactor;
+        Address = address;
+        Active = true;
+        Donations = [];
     }
     
-    public string Name { get; private set; }
-    public string Email { get; private set; }
+    protected Donor(){ }
+    
+    public string? Name { get; private set; } 
+    public string? Email { get; private set; }
     public DateTime BirthDate { get; private set; }
     public Gender Gender { get; private set; }
     public int Weight { get; private set; }
     public bool IsDonor { get; private set; }
     public DateTime LastDonation { get; private set; }
     public DateTime NextDonation { get; private set; }
-    public int BloodId { get; private set; }
-    public Blood Blood { get; private set; }
+    public BloodType BloodType { get; private set; }
+    public RhFactor RhFactor { get; private set; }
+    public Address? Address { get; private set; }
+    public bool Active { get; private set; }
 
-    public Address Address { get; private set; }
+    public IEnumerable<DonationDonor>? Donations { get; private set; }
 
-    public IEnumerable<Donation> Donations { get; private set; }
-
-    public void UpdateDonor(string name, string email, DateTime birthDate, Gender gender, int weight, int bloodId)
-    {
-        Name = name;
-        Email = email;
-        BirthDate = birthDate;
-        Gender = gender;
-        Weight = weight;
-        BloodId = bloodId;
-    }
-
-    public bool CanBeADonor(DateTime birthDate)
+    private bool CanBeADonor(DateTime birthDate)
     {
         var age = DateTime.Now.Year - birthDate.Year;
 
-        if (birthDate.AddYears(age) > DateTime.Now)
+        if (birthDate.AddYears(age) > DateTime.UtcNow)
         {
             age--;
         }
 
-        if (age >= 18)
-        {
-            return true;
-        }
-
-        return false;
+        return age >= BloodDonationRuleConstans.AGE_ALLOWED_DONATION;
     }
 
     public void UpdateLastDonation(DateTime lastDonation)
     {
         LastDonation = lastDonation;
 
-        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? 90 : 60);
+        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? BloodDonationRuleConstans.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstans.DAYS_NEXT_DONATION_MAN);
+    }
+    
+    public void ToInactive()
+    {
+        Active = false;
     }
 }
