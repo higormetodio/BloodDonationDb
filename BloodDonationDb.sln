@@ -15,13 +15,20 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonationDb.Domain", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonationDb.Infrastructure", "src\Backend\BloodDonationDb.Infrastructure\BloodDonationDb.Infrastructure.csproj", "{7439E8DB-AACD-41B7-9A2E-32A352CF9B1B}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommomTestUtilities", "tests\CommomTestUtilities\CommomTestUtilities.csproj", "{430A1447-5147-4DC5-B025-2F0E53CA5234}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain.Test", "tests\Domain.Test\Domain.Test.csproj", "{A5C780B6-AAFC-4015-9CE3-26B0696542A8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonationDb.Comunication", "src\Shared\BloodDonationDb.Comunication\BloodDonationDb.Comunication.csproj", "{18ED6058-1FEA-4537-A5A5-E98A3C1F1266}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(SolutionProperties) = preSolution
-		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{D72BF78F-B1A4-490A-9CE0-970E278924C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -40,6 +47,21 @@ Global
 		{7439E8DB-AACD-41B7-9A2E-32A352CF9B1B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7439E8DB-AACD-41B7-9A2E-32A352CF9B1B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7439E8DB-AACD-41B7-9A2E-32A352CF9B1B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{430A1447-5147-4DC5-B025-2F0E53CA5234}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{430A1447-5147-4DC5-B025-2F0E53CA5234}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{430A1447-5147-4DC5-B025-2F0E53CA5234}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{430A1447-5147-4DC5-B025-2F0E53CA5234}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A5C780B6-AAFC-4015-9CE3-26B0696542A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A5C780B6-AAFC-4015-9CE3-26B0696542A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A5C780B6-AAFC-4015-9CE3-26B0696542A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A5C780B6-AAFC-4015-9CE3-26B0696542A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{546C1D98-440D-4AEE-B222-EB8A93636532} = {1AE5E66D-005A-4C11-84E8-B737D527B8D9}
@@ -47,5 +69,9 @@ Global
 		{CC26C4DB-F689-4293-854D-BA11059C2D21} = {546C1D98-440D-4AEE-B222-EB8A93636532}
 		{BACE1647-8F54-4462-8CBA-8A16A2AF97F2} = {546C1D98-440D-4AEE-B222-EB8A93636532}
 		{7439E8DB-AACD-41B7-9A2E-32A352CF9B1B} = {546C1D98-440D-4AEE-B222-EB8A93636532}
+		{430A1447-5147-4DC5-B025-2F0E53CA5234} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
+		{A5C780B6-AAFC-4015-9CE3-26B0696542A8} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
+		{B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E} = {1AE5E66D-005A-4C11-84E8-B737D527B8D9}
+		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266} = {B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E}
 	EndGlobalSection
 EndGlobal
