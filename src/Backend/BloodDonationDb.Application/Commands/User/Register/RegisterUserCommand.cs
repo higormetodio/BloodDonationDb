@@ -2,7 +2,7 @@
 using BloodDonationDb.Application.Models.User;
 using MediatR;
 
-namespace BloodDonationDb.Application.Commands.User.RegisterUser;
+namespace BloodDonationDb.Application.Commands.User.Register;
 public class RegisterUserCommand : IRequest<ResultViewModel<ResponseRegisterUser>>
 {   
     public string? Name { get; set; }

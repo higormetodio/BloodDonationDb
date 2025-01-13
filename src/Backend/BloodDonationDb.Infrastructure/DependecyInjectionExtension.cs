@@ -1,12 +1,14 @@
 using BloodDonationDb.Comunication.Mediator;
 using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
+using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Domain.SeedWorks;
 using BloodDonationDb.Infrastructure.Extensions;
 using BloodDonationDb.Infrastructure.Persistence;
 using BloodDonationDb.Infrastructure.Persistence.MongoDb;
 using BloodDonationDb.Infrastructure.Persistence.Repositories;
 using BloodDonationDb.Infrastructure.Security.Criptography;
+using BloodDonationDb.Infrastructure.Security.Tokens.Access.Generator;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,9 +20,18 @@ public static class DependecyInjectionExtension
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        AddDbContextSqlServer(services, configuration);
+        
         AddRepositories(services);
         AddPasswordEncripter(services, configuration);
+        AddAccessToken(services, configuration);
+
+        if (configuration.IsUnitTestEnviroment())
+        {
+            return;
+        }
+
+        AddDbContextSqlServer(services, configuration);
+
         //AddMongoDb(services, configuration);
         //AddInterceptors(services);
         //AddBackGroundJobs(services);
@@ -45,7 +56,15 @@ public static class DependecyInjectionExtension
     {
         var additionalKey = configuration.GetValue<string>("Settings:Passwords:AdditionalKey");
 
-        service.AddScoped<IPasswordEncripter>(opetions => new Sha512Encripter(additionalKey!));
+        service.AddScoped<IPasswordEncripter>(options => new Sha512Encripter(additionalKey!));
+    }
+
+    public static void AddAccessToken(IServiceCollection service, IConfiguration configuration)
+    {
+        var expirationTimeMinutes = configuration.GetValue<uint>("Settings:Jwt:ExpirationTimeMinutes");
+        var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
+
+        service.AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
     }
 
     //private static void AddMongoDb(IServiceCollection services, IConfiguration configuration)

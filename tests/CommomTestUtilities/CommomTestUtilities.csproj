@@ -8,10 +8,14 @@
 
   <ItemGroup>
     <PackageReference Include="Bogus" Version="35.6.1" />
+    <PackageReference Include="NSubstitute" Version="5.3.0" />
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\src\Backend\BloodDonationDb.API\BloodDonationDb.API.csproj" />
+    <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Application\BloodDonationDb.Application.csproj" />
     <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Domain\BloodDonationDb.Domain.csproj" />
+    <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Infrastructure\BloodDonationDb.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>
