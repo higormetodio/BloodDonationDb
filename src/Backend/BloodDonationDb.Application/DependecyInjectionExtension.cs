@@ -1,4 +1,4 @@
-﻿using BloodDonationDb.Application.Commands.User.RegisterUser;
+﻿using BloodDonationDb.Application.Commands.User.Register;
 using BloodDonationDb.Comunication.Mediator;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

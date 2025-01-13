@@ -8,4 +8,9 @@ public static class ConfigurationExtension
     {
         return configuration.GetConnectionString("BloodDonationDb")!;
     }
+
+    public static bool IsUnitTestEnviroment(this IConfiguration configuration)
+    {
+        return configuration.GetValue<bool>("BloodDonationDbInMemoryTest");
+    }
 }
