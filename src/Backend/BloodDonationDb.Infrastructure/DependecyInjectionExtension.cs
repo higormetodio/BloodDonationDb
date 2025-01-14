@@ -1,4 +1,5 @@
 using BloodDonationDb.Comunication.Mediator;
+using BloodDonationDb.Domain.Repositories.Token;
 using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
 using BloodDonationDb.Domain.Security.Tokens;
@@ -9,6 +10,7 @@ using BloodDonationDb.Infrastructure.Persistence.MongoDb;
 using BloodDonationDb.Infrastructure.Persistence.Repositories;
 using BloodDonationDb.Infrastructure.Security.Criptography;
 using BloodDonationDb.Infrastructure.Security.Tokens.Access.Generator;
+using BloodDonationDb.Infrastructure.Security.Tokens.Refresh;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -50,6 +52,7 @@ public static class DependecyInjectionExtension
     {
         service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         service.AddScoped<IUnitOfWork, UnitOfWork>();
+        service.AddScoped<ITokenRepository, TokenRepository>();
     }
 
     public static void AddPasswordEncripter(IServiceCollection service, IConfiguration configuration)
@@ -65,6 +68,7 @@ public static class DependecyInjectionExtension
         var signingKey = configuration.GetValue<string>("Settings:Jwt:SigningKey");
 
         service.AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
+        service.AddScoped<IRefreshTokenGenerator>(options => new RefreshTokenGenerator());
     }
 
     //private static void AddMongoDb(IServiceCollection services, IConfiguration configuration)

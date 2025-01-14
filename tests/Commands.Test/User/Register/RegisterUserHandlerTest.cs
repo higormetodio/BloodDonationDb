@@ -2,6 +2,7 @@
 using CommomTestUtilities.Commands;
 using CommomTestUtilities.Criptography;
 using CommomTestUtilities.Repositories;
+using CommomTestUtilities.Repositories.Token;
 using CommomTestUtilities.Repositories.User;
 using CommomTestUtilities.Token;
 using FluentAssertions;
@@ -22,7 +23,7 @@ public class RegisterUserHandlerTest
 
         result.Should().NotBeNull();
         result!.Name.Should().Be(command.Name);
-        result.Token.Should().NotBeNullOrEmpty();
+        result.Token!.AccessToken.Should().NotBeNullOrEmpty();
     }
 
     private static RegisterUserHandler CreateHandler()
@@ -31,7 +32,10 @@ public class RegisterUserHandlerTest
         var unitOfWork = UnitOfWorkBuilder.Builder();
         var passwordEncripter = PasswordEncripterBuilder.Builder();
         var accessTokenGenerator = JwtTokenGeneratorBuilder.Builder();
+        var refreshTokenGenerator = RefreshTokenGeneratorBuilder.Build();
+        var tokenRepository = new TokenRepositoryBuilder().Build();
 
-        return new RegisterUserHandler(userWriteOnlyRepository, unitOfWork, passwordEncripter, accessTokenGenerator);
+
+        return new RegisterUserHandler(userWriteOnlyRepository, unitOfWork, passwordEncripter, accessTokenGenerator, refreshTokenGenerator, tokenRepository);
     }
 }
