@@ -25,6 +25,6 @@ public class RegisterUserTest : BloodDonationDbClassFixture
         var responseData = await JsonDocument.ParseAsync(responseBody);
 
         responseData.RootElement.GetProperty("name").GetString().Should().NotBeNullOrWhiteSpace().And.Be(command.Name);
-        responseData.RootElement.GetProperty("token").GetString().Should().NotBeNullOrEmpty();
+        responseData.RootElement.GetProperty("token").GetProperty("accessToken").GetString().Should().NotBeNullOrEmpty();
     }
 }

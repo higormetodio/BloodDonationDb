@@ -12,6 +12,8 @@ public class User : Entity, IAggregateRoot
         Active = true;  
     }
 
+    protected User() { }
+
     public string Name { get; private set; }
     public string Email { get; private set; }
     public string Password { get; private set; }

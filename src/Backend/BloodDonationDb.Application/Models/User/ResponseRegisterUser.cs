@@ -9,5 +9,5 @@ namespace BloodDonationDb.Application.Models.User;
 public class ResponseRegisterUser
 {
     public string? Name { get; set; }
-    public string? Token { get; set; }
+    public ResponseToken? Token { get; set; }
 }
