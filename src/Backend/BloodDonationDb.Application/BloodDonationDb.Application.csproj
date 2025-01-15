@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Shared\BloodDonationDb.Comunication\BloodDonationDb.Comunication.csproj" />
+    <ProjectReference Include="..\..\Shared\BloodDonationDb.Exceptions\BloodDonationDb.Exceptions.csproj" />
     <ProjectReference Include="..\BloodDonationDb.Domain\BloodDonationDb.Domain.csproj" />
     <ProjectReference Include="..\BloodDonationDb.Infrastructure\BloodDonationDb.Infrastructure.csproj" />
   </ItemGroup>

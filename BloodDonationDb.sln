@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Commands.Test", "tests\Comm
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebAPI.Test", "tests\WebAPI.Test\WebAPI.Test.csproj", "{7620ABC1-6D7B-4F32-96CC-A2B090821466}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonationDb.Exceptions", "src\Shared\BloodDonationDb.Exceptions\BloodDonationDb.Exceptions.csproj", "{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -71,6 +73,10 @@ Global
 		{7620ABC1-6D7B-4F32-96CC-A2B090821466}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7620ABC1-6D7B-4F32-96CC-A2B090821466}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7620ABC1-6D7B-4F32-96CC-A2B090821466}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -87,5 +93,6 @@ Global
 		{18ED6058-1FEA-4537-A5A5-E98A3C1F1266} = {B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E}
 		{082EFA39-3E65-4EC4-A608-9EE6A9010677} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
 		{7620ABC1-6D7B-4F32-96CC-A2B090821466} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
+		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1} = {B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E}
 	EndGlobalSection
 EndGlobal

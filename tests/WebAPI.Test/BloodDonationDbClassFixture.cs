@@ -9,6 +9,7 @@ public class BloodDonationDbClassFixture : IClassFixture<CustomWebApplicationFac
 
     protected async Task<HttpResponseMessage> PostAsync(string method, object command)
     {
-        return await _httpClient.PostAsJsonAsync(method, command);
+        var teste = await _httpClient.PostAsJsonAsync(method, command);
+        return teste;
     }
 }

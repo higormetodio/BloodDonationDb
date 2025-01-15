@@ -16,6 +16,7 @@
     <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Application\BloodDonationDb.Application.csproj" />
     <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Domain\BloodDonationDb.Domain.csproj" />
     <ProjectReference Include="..\..\src\Backend\BloodDonationDb.Infrastructure\BloodDonationDb.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\src\Shared\BloodDonationDb.Exceptions\BloodDonationDb.Exceptions.csproj" />
   </ItemGroup>
 
 </Project>
