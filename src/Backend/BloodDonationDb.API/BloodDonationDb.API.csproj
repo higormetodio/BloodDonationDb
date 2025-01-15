@@ -24,4 +24,8 @@
     <Compile Remove="WeatherForecast.cs" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Filter\" />
+  </ItemGroup>
+
 </Project>
