@@ -1,6 +1,8 @@
 using BloodDonationDb.API.Converters;
+using BloodDonationDb.API.Middleware;
 using BloodDonationDb.Application;
 using BloodDonationDb.Infrastructure;
+using BloodDonationDb.Infrastructure.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -25,6 +27,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+app.UseMiddleware<CultureMiddleware>(); 
 
 app.UseHttpsRedirection();
 
