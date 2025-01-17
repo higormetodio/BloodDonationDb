@@ -11,5 +11,10 @@ public class UserReadOnlyRepositoryBuilder
         _repository.GetByEmailAsync(user.Email)!.Returns(Task.FromResult(user));
     }
 
+    public void ExistActiveUserWithEmail(string email)
+    {
+        _repository.ExistsActiveUserWithEmail(email).Returns(Task.FromResult(true));
+    }
+
     public IUserReadOnlyRepository Builder() => _repository;
 }

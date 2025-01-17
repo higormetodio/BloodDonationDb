@@ -61,11 +61,74 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Email already registered.
+        /// </summary>
+        public static string EMAIL_ALREADY_REGISTER {
+            get {
+                return ResourceManager.GetString("EMAIL_ALREADY_REGISTER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email cannot be empty.
+        /// </summary>
+        public static string EMAIL_EMPTY {
+            get {
+                return ResourceManager.GetString("EMAIL_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Email is invalid.
+        /// </summary>
+        public static string EMAIL_INVALID {
+            get {
+                return ResourceManager.GetString("EMAIL_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email and/or password invalid.
         /// </summary>
         public static string EMAIL_OR_PASSWORD_INVALID {
             get {
                 return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name cannot be empty.
+        /// </summary>
+        public static string NAME_EMPTY {
+            get {
+                return ResourceManager.GetString("NAME_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password cannot be empty.
+        /// </summary>
+        public static string PASSWORD_EMPTY {
+            get {
+                return ResourceManager.GetString("PASSWORD_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Password must be at least 8 characters long, contain at least 1 digit, at least 1 lowercase letter, at least 1 uppercase letter, and at least 1 special character (!*@#$%^&amp;+=).
+        /// </summary>
+        public static string PASSWORD_INVALID {
+            get {
+                return ResourceManager.GetString("PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Server error.
+        /// </summary>
+        public static string UNKNOW_ERROR {
+            get {
+                return ResourceManager.GetString("UNKNOW_ERROR", resourceCulture);
             }
         }
     }

@@ -3,7 +3,7 @@ using BloodDonationDb.Application.Models.User;
 using MediatR;
 
 namespace BloodDonationDb.Application.Commands.User.Register;
-public class RegisterUserCommand : IRequest<ResultViewModel<ResponseRegisterUser>>
+public class RegisterUserCommand : IRequest<ResultViewModel<RegisterUserViewModel>>
 {   
     public string? Name { get; set; }
     public string? Email { get; set; }

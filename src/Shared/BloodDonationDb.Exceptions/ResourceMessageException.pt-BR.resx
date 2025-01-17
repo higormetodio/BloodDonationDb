@@ -117,7 +117,28 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EMAIL_ALREADY_REGISTER" xml:space="preserve">
+    <value>E-mail já cadastrado</value>
+  </data>
+  <data name="EMAIL_EMPTY" xml:space="preserve">
+    <value>O e-mail não pode ser vazio</value>
+  </data>
+  <data name="EMAIL_INVALID" xml:space="preserve">
+    <value>O Email não é válido</value>
+  </data>
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
     <value>E-mail e/ou senha inválidos</value>
+  </data>
+  <data name="PASSWORD_INVALID" xml:space="preserve">
+    <value>A senha deve ter ao menor 8 caracteres, pelo menos 1 dígito, pelo menos 1 letra minúscula, pelo menos 1 letra maiúscula e pelo menos 1 caractere especial (!*@#$%^&amp;+=) </value>
+  </data>
+  <data name="NAME_EMPTY" xml:space="preserve">
+    <value>O nome não pode ser vazio</value>
+  </data>
+  <data name="PASSWORD_EMPTY" xml:space="preserve">
+    <value>A senha não pode ser vazia</value>
+  </data>
+  <data name="UNKNOW_ERROR" xml:space="preserve">
+    <value>Erro do servidor</value>
   </data>
 </root>
