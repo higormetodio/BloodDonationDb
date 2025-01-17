@@ -15,7 +15,7 @@ public class UserController : MyBloodDonationDbController
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseRegisterUser), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(RegisterUserViewModel), StatusCodes.Status201Created)]
     public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
     {
         var result = await _mediator.Send(command);

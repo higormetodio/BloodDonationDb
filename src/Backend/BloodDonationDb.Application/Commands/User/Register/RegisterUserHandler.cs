@@ -8,56 +8,64 @@ using BloodDonationDb.Domain.SeedWorks;
 using BloodDonationDb.Domain.Entities;
 using MediatR;
 using BloodDonationDb.Application.Models.Token;
+using BloodDonationDb.Exceptions;
+using BloodDonationDb.Exceptions.ExceptionsBase;
 
 namespace BloodDonationDb.Application.Commands.User.Register;
 
-public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultViewModel<ResponseRegisterUser>>
+public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultViewModel<RegisterUserViewModel>>
 {
-    private readonly IUserWriteOnlyRepository _userRepository;
+    private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
+    private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IUnitOfWork _unitOfWork;
     private readonly IPasswordEncripter _passwordEncripter;
     private readonly IAccessTokenGenerator _accessTokenGenerator;
     private readonly IRefreshTokenGenerator _refreshTokenGenerator;
     private readonly ITokenRepository _tokenRepository;
 
-    public RegisterUserHandler(IUserWriteOnlyRepository userRepository, 
-        IUnitOfWork unitOfWork, 
-        IPasswordEncripter passwordEncripter, 
-        IAccessTokenGenerator accessTokenGenerator, 
-        IRefreshTokenGenerator refreshTokenGenerator, 
+    public RegisterUserHandler(IUserWriteOnlyRepository userWriteOnlyRepository,
+        IUserReadOnlyRepository userReadOnlyRepository,
+        IUnitOfWork unitOfWork,
+        IPasswordEncripter passwordEncripter,
+        IAccessTokenGenerator accessTokenGenerator,
+        IRefreshTokenGenerator refreshTokenGenerator,
         ITokenRepository tokenRepository)
     {
-        _userRepository = userRepository;
+        _userWriteOnlyRepository = userWriteOnlyRepository;
+        _userReadOnlyRepository = userReadOnlyRepository;
         _unitOfWork = unitOfWork;
         _passwordEncripter = passwordEncripter;
         _accessTokenGenerator = accessTokenGenerator;
         _refreshTokenGenerator = refreshTokenGenerator;
         _tokenRepository = tokenRepository;
+        
     }
 
-    public async Task<ResultViewModel<ResponseRegisterUser>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
-    {        
+    public async Task<ResultViewModel<RegisterUserViewModel>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    {
+        await Validate(request);
+
         var password = _passwordEncripter.Encript(request.Password!);
 
         var user = request.ToEntity(password);
 
-        await _userRepository.AddUserAsync(user);
+        await _userWriteOnlyRepository.AddUserAsync(user);
 
         await _unitOfWork.CommitAsync();
 
         var refreshToken = await CreateAndSaveRefreshToken(user);
 
-        var responseRegisterUser = new ResponseRegisterUser
+        var responseRegisterUser = new RegisterUserViewModel
         {
             Name = user.Name,
-            Token = new ResponseToken
+            Token = new TokenViewModel
             {
                 AccessToken = _accessTokenGenerator.Generate(user.Id),
                 RefreshToken = refreshToken
             }
         };
 
-        return ResultViewModel<ResponseRegisterUser>.Success(responseRegisterUser);
+        return ResultViewModel<RegisterUserViewModel>.Success(responseRegisterUser);
     }
 
     private async Task<string> CreateAndSaveRefreshToken(Domain.Entities.User user)
@@ -69,5 +77,27 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
         await _unitOfWork.CommitAsync();
 
         return refreshToken;       
+    }
+
+    private async Task Validate(RegisterUserCommand command)
+    {
+        var validator = new RegisterUserValidator();
+
+        var result = await validator.ValidateAsync(command);
+
+        var emailExist = await _userReadOnlyRepository.ExistsActiveUserWithEmail(command.Email!);
+
+        if (emailExist)
+        {
+            result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.EMAIL_ALREADY_REGISTER));
+        }
+
+        if (!result.IsValid)
+        {
+            var errorMessages = result.Errors.Select(e => e.ErrorMessage).ToList();
+
+            throw new ErrorOnValidationException(errorMessages);
+        }
+
     }
 }

@@ -6,8 +6,8 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BloodDonationDb.Application.Models.User;
-public class ResponseRegisterUser
+public class RegisterUserViewModel
 {
     public string? Name { get; set; }
-    public ResponseToken? Token { get; set; }
+    public TokenViewModel? Token { get; set; }
 }
