@@ -15,7 +15,5 @@ public static class DependecyInjectionExtension
     {
       
         services.AddMediatR(config => config.RegisterServicesFromAssemblyContaining<RegisterUserCommand>());
-        //services.AddScoped<IMediatorHandler, MediatorHandler>();
-        //services.AddScoped<IRequestHandler, RequestHandler>
     }
 }

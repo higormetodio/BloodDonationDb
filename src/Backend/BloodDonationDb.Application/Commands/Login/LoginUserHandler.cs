@@ -13,7 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace BloodDonationDb.Application.Commands.Login;
-public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewModel<ResponseRegisterUser>>
+public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewModel<RegisterUserViewModel>>
 {
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IPasswordEncripter _passwordEncripter;
@@ -26,7 +26,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewMode
         _accessTokenGenerator = accessTokenGenerator;
     }
 
-    public async Task<ResultViewModel<ResponseRegisterUser>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    public async Task<ResultViewModel<RegisterUserViewModel>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {        
         var user = await _userReadOnlyRepository.GetByEmailAsync(request.Email!);
 
@@ -36,15 +36,15 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewMode
         }
 
 
-        var responseRegisterUser = new ResponseRegisterUser
+        var responseRegisterUser = new RegisterUserViewModel
         {
             Name = user.Name,
-            Token = new ResponseToken
+            Token = new TokenViewModel
             {
                 AccessToken = _accessTokenGenerator.Generate(user.Id),
             }
         };
 
-        return ResultViewModel<ResponseRegisterUser>.Success(responseRegisterUser);
+        return ResultViewModel<RegisterUserViewModel>.Success(responseRegisterUser);
     }
 }
