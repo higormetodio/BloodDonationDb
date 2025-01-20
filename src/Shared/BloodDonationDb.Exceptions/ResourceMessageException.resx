@@ -141,4 +141,10 @@
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Server error</value>
   </data>
+  <data name="NO_TOKEN" xml:space="preserve">
+    <value>No token was generated for the user</value>
+  </data>
+  <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
+    <value>User without to access resource</value>
+  </data>
 </root>

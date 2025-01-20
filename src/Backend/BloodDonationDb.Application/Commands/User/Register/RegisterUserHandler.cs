@@ -10,6 +10,7 @@ using MediatR;
 using BloodDonationDb.Application.Models.Token;
 using BloodDonationDb.Exceptions;
 using BloodDonationDb.Exceptions.ExceptionsBase;
+using BloodDonationDb.Domain.Services.LoggedUser;
 
 namespace BloodDonationDb.Application.Commands.User.Register;
 
@@ -22,6 +23,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
     private readonly IAccessTokenGenerator _accessTokenGenerator;
     private readonly IRefreshTokenGenerator _refreshTokenGenerator;
     private readonly ITokenRepository _tokenRepository;
+    private readonly ILoggedUser _loggedUser;
 
     public RegisterUserHandler(IUserWriteOnlyRepository userWriteOnlyRepository,
         IUserReadOnlyRepository userReadOnlyRepository,
@@ -29,7 +31,8 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
         IPasswordEncripter passwordEncripter,
         IAccessTokenGenerator accessTokenGenerator,
         IRefreshTokenGenerator refreshTokenGenerator,
-        ITokenRepository tokenRepository)
+        ITokenRepository tokenRepository,
+        ILoggedUser loggedUser)
     {
         _userWriteOnlyRepository = userWriteOnlyRepository;
         _userReadOnlyRepository = userReadOnlyRepository;
@@ -38,12 +41,14 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
         _accessTokenGenerator = accessTokenGenerator;
         _refreshTokenGenerator = refreshTokenGenerator;
         _tokenRepository = tokenRepository;
-        
+        _loggedUser = loggedUser;
     }
 
     public async Task<ResultViewModel<RegisterUserViewModel>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
-        await Validate(request);
+        var loggedUser = await _loggedUser.User();
+        
+        await Validate(request, loggedUser.Email);
 
         var password = _passwordEncripter.Encript(request.Password!);
 
@@ -79,18 +84,21 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
         return refreshToken;       
     }
 
-    private async Task Validate(RegisterUserCommand command)
+    private async Task Validate(RegisterUserCommand command, string currentEmail)
     {
         var validator = new RegisterUserValidator();
 
         var result = await validator.ValidateAsync(command);
 
-        var emailExist = await _userReadOnlyRepository.ExistsActiveUserWithEmail(command.Email!);
-
-        if (emailExist)
+        if (!currentEmail.Equals(command.Email))
         {
-            result.Errors.Add(new FluentValidation.Results.ValidationFailure(string.Empty, ResourceMessageException.EMAIL_ALREADY_REGISTER));
-        }
+            var userExist = await _userReadOnlyRepository.ExistsActiveUserWithEmail(command.Email!);
+
+            if (userExist)
+            {
+                result.Errors.Add(new FluentValidation.Results.ValidationFailure("email", ResourceMessageException.EMAIL_ALREADY_REGISTER));
+            }
+        }       
 
         if (!result.IsValid)
         {

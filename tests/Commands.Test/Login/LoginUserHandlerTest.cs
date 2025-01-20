@@ -47,7 +47,7 @@ public class LoginUserHandlerTest
             .Where(e => e.Message.Equals(ResourceMessageException.EMAIL_OR_PASSWORD_INVALID));
     }
 
-    public LoginUserHandler CreateHandler(BloodDonationDb.Domain.Entities.User user = null)
+    public LoginUserHandler CreateHandler(BloodDonationDb.Domain.Entities.User? user = null)
     {
         var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();
         var passwordEncripter = PasswordEncripterBuilder.Builder();

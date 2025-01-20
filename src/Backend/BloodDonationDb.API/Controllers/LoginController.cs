@@ -15,8 +15,8 @@ public class LoginController : MyBloodDonationDbController
     }
 
     [HttpPost]
-    [ProducesResponseType(typeof(ResponseRegisterUser), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseRegisterUser), StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(typeof(RegisterUserViewModel), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(RegisterUserViewModel), StatusCodes.Status401Unauthorized)]
     public async Task<IActionResult> Login([FromBody] LoginUserCommand command)
     {
         var request = await _mediator.Send(command);

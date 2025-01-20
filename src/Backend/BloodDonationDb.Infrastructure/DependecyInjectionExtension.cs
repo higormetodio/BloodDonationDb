@@ -4,13 +4,16 @@ using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
 using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Domain.SeedWorks;
+using BloodDonationDb.Domain.Services.LoggedUser;
 using BloodDonationDb.Infrastructure.Extensions;
 using BloodDonationDb.Infrastructure.Persistence;
 using BloodDonationDb.Infrastructure.Persistence.MongoDb;
 using BloodDonationDb.Infrastructure.Persistence.Repositories;
 using BloodDonationDb.Infrastructure.Security.Criptography;
 using BloodDonationDb.Infrastructure.Security.Tokens.Access.Generator;
+using BloodDonationDb.Infrastructure.Security.Tokens.Access.Validator;
 using BloodDonationDb.Infrastructure.Security.Tokens.Refresh;
+using BloodDonationDb.Infrastructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -26,6 +29,7 @@ public static class DependecyInjectionExtension
         AddRepositories(services);
         AddPasswordEncripter(services, configuration);
         AddAccessToken(services, configuration);
+        AddLoggedUser(services);
 
         if (configuration.IsUnitTestEnviroment())
         {
@@ -70,7 +74,11 @@ public static class DependecyInjectionExtension
 
         service.AddScoped<IAccessTokenGenerator>(options => new JwtTokenGenerator(expirationTimeMinutes, signingKey!));
         service.AddScoped<IRefreshTokenGenerator>(options => new RefreshTokenGenerator());
+        service.AddScoped<IAccessTokenValidator>(options => new JwtTokenValidator(signingKey!));
     }
+
+    public static void AddLoggedUser(IServiceCollection service) => service.AddScoped<ILoggedUser, LoggedUser>();
+    
 
     //private static void AddMongoDb(IServiceCollection services, IConfiguration configuration)
     //{

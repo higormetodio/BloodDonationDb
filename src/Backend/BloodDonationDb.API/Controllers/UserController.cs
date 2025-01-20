@@ -1,10 +1,12 @@
-﻿using BloodDonationDb.Application.Commands.User.Register;
+﻿using BloodDonationDb.API.Attributes;
+using BloodDonationDb.Application.Commands.User.Register;
 using BloodDonationDb.Application.Models.User;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonationDb.API.Controllers;
 
+[AuthenticatedUser]
 public class UserController : MyBloodDonationDbController
 {
     private readonly IMediator _mediator;
