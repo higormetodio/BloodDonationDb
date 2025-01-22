@@ -15,7 +15,7 @@ public class BloodStockTest
         _bloodStock.Should().NotBeNull();
         _bloodStock.BloodType.Should().BeOneOf([BloodType.A, BloodType.B, BloodType.O, BloodType.AB]);
         _bloodStock.RhFactor.Should().BeOneOf([RhFactor.Positive, RhFactor.Negative]);
-        _bloodStock.Quantity.Should().Be(BloodDonationRuleConstans.INITIAL_QUANTITY_STOCK);
+        _bloodStock.Quantity.Should().Be(BloodDonationRuleConstants.INITIAL_QUANTITY_STOCK);
         _bloodStock.MinimumQuantityReached.Should().BeTrue();
         _bloodStock.DonationDonors.Should().NotBeNull();
         _bloodStock.DonationReceivers.Should().NotBeNull();

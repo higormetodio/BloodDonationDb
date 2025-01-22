@@ -1,4 +1,4 @@
-using BloodDonationDb.Comunication.Mediator;
+using BloodDonationDb.Domain.Repositories.Donor;
 using BloodDonationDb.Domain.Repositories.Token;
 using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
@@ -7,7 +7,6 @@ using BloodDonationDb.Domain.SeedWorks;
 using BloodDonationDb.Domain.Services.LoggedUser;
 using BloodDonationDb.Infrastructure.Extensions;
 using BloodDonationDb.Infrastructure.Persistence;
-using BloodDonationDb.Infrastructure.Persistence.MongoDb;
 using BloodDonationDb.Infrastructure.Persistence.Repositories;
 using BloodDonationDb.Infrastructure.Security.Criptography;
 using BloodDonationDb.Infrastructure.Security.Tokens.Access.Generator;
@@ -17,7 +16,6 @@ using BloodDonationDb.Infrastructure.Services.LoggedUser;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using MongoDB.Driver;
 
 namespace BloodDonationDb.Infrastructure;
 
@@ -56,6 +54,8 @@ public static class DependecyInjectionExtension
     {
         service.AddScoped<IUserWriteOnlyRepository, UserRepository>();
         service.AddScoped<IUserReadOnlyRepository, UserRepository>();
+        service.AddScoped<IDonorWriteOnlyRepository, DonorRepository>();
+        service.AddScoped<IDonorReadOnlyRepository, DonorRepository>();
         service.AddScoped<IUnitOfWork, UnitOfWork>();
         service.AddScoped<ITokenRepository, TokenRepository>();
     }

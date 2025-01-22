@@ -10,7 +10,7 @@ public class BloodStock : Entity, IAggregateRoot
     {
         BloodType = bloodType;
         RhFactor = rhFactor;
-        Quantity = BloodDonationRuleConstans.INITIAL_QUANTITY_STOCK;
+        Quantity = BloodDonationRuleConstants.INITIAL_QUANTITY_STOCK;
         MinimumQuantityReached = true;
         DonationDonors = [];
         DonationReceivers = [];
@@ -42,6 +42,6 @@ public class BloodStock : Entity, IAggregateRoot
     
     private void IsMinimumQuantityReached()
     {
-        MinimumQuantityReached = Quantity <= BloodDonationRuleConstans.MINIMAL_QUANTITY_STOCK;
+        MinimumQuantityReached = Quantity <= BloodDonationRuleConstants.MINIMAL_QUANTITY_STOCK;
     }
 }

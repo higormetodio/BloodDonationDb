@@ -4,7 +4,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Identity.Client;
 
 namespace WebAPI.Test;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
@@ -48,6 +47,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
     public string GetPassword() => _password;   
 
     public string GetName() => _user.Name;
+
+    public Guid GetUserId() => _user.Id;
 
     private void StartDatabase(BloodDonationDbContext context)
     {
