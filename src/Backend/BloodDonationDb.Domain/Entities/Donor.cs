@@ -14,6 +14,8 @@ public class Donor : Entity, IAggregateRoot
         Gender = gender;
         Weight = weight;
         IsDonor = CanBeADonor(birthDate);
+        LastDonation = DateTime.Now.Date;
+        NextDonation = DateTime.Now.Date;
         BloodType = bloodType;
         RhFactor = rhFactor;
         Address = address;
@@ -47,14 +49,14 @@ public class Donor : Entity, IAggregateRoot
             age--;
         }
 
-        return age >= BloodDonationRuleConstans.AGE_ALLOWED_DONATION;
+        return age >= BloodDonationRuleConstants.AGE_ALLOWED_DONATION;
     }
 
     public void UpdateLastDonation(DateTime lastDonation)
     {
         LastDonation = lastDonation;
 
-        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? BloodDonationRuleConstans.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstans.DAYS_NEXT_DONATION_MAN);
+        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? BloodDonationRuleConstants.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstants.DAYS_NEXT_DONATION_MAN);
     }
     
     public void ToInactive()

@@ -12,6 +12,6 @@ public class BloodStockMinimumQuantityDomainEventBuilder
             .RuleFor(b => b.BloodId, faker => faker.Random.Guid())
             .RuleFor(b => b.BloodType, faker => faker.PickRandom<BloodType>())
             .RuleFor(b => b.RhFactor, faker => faker.PickRandom<RhFactor>())
-            .RuleFor(b => b.Quantity, faker => faker.Random.Number(0, BloodDonationRuleConstans.MINIMAL_QUANTITY_STOCK));
+            .RuleFor(b => b.Quantity, faker => faker.Random.Number(0, BloodDonationRuleConstants.MINIMAL_QUANTITY_STOCK));
     }
 }
