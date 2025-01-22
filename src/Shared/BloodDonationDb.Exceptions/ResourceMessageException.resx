@@ -147,4 +147,43 @@
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>User without to access resource</value>
   </data>
+  <data name="BIRTH_DATE_NOT_ALLOWED" xml:space="preserve">
+    <value>Date of birth not allowed for donors turning 69</value>
+  </data>
+  <data name="GENDER_NOT_SUPPORTED" xml:space="preserve">
+    <value>Gender not supported</value>
+  </data>
+  <data name="WEIGHT_NOT_ALLOWED" xml:space="preserve">
+    <value>Weight cannot be less than 50 kg and greater than 140 kg</value>
+  </data>
+  <data name="BLOOD_TYPE_NOT_SUPPOTED" xml:space="preserve">
+    <value>Blood Type not supported</value>
+  </data>
+  <data name="RH_FACTOR_NOT_SUPPORTED" xml:space="preserve">
+    <value>RH Factor not supported</value>
+  </data>
+  <data name="ADDRESS_STREET_EMPTY" xml:space="preserve">
+    <value>In address, street cannot be empty.</value>
+  </data>
+  <data name="ADDRESS_NUMBER_EMPTY" xml:space="preserve">
+    <value>In address, number cannot be empty.</value>
+  </data>
+  <data name="ADDRESS_CITY_EMPTY" xml:space="preserve">
+    <value>In address, city cannot be empty.</value>
+  </data>
+  <data name="ADDRESS_STATE_EMPTY" xml:space="preserve">
+    <value>In address, state cannot be empty.</value>
+  </data>
+  <data name="ADDRESS_ZIP_EMPTY" xml:space="preserve">
+    <value>In address, zip code cannot be empty.</value>
+  </data>
+  <data name="ADDRESS_COUNTRY_EMPTY" xml:space="preserve">
+    <value>In address, country cannot be empty.</value>
+  </data>
+  <data name="BIRTH_DATE_EMPTY" xml:space="preserve">
+    <value>Birth date cannou be empty</value>
+  </data>
+  <data name="BIRTH_DATE_INVALID" xml:space="preserve">
+    <value>Birth date invalid</value>
+  </data>
 </root>

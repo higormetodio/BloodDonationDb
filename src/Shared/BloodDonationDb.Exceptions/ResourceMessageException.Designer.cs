@@ -61,6 +61,96 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to In address, city cannot be empty..
+        /// </summary>
+        public static string ADDRESS_CITY_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_CITY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In address, country cannot be empty..
+        /// </summary>
+        public static string ADDRESS_COUNTRY_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_COUNTRY_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In address, number cannot be empty..
+        /// </summary>
+        public static string ADDRESS_NUMBER_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_NUMBER_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In address, state cannot be empty..
+        /// </summary>
+        public static string ADDRESS_STATE_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_STATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In address, street cannot be empty..
+        /// </summary>
+        public static string ADDRESS_STREET_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_STREET_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to In address, zip code cannot be empty..
+        /// </summary>
+        public static string ADDRESS_ZIP_EMPTY {
+            get {
+                return ResourceManager.GetString("ADDRESS_ZIP_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth date cannou be empty.
+        /// </summary>
+        public static string BIRTH_DATE_EMPTY {
+            get {
+                return ResourceManager.GetString("BIRTH_DATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Birth date invalid.
+        /// </summary>
+        public static string BIRTH_DATE_INVALID {
+            get {
+                return ResourceManager.GetString("BIRTH_DATE_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Date of birth not allowed for donors turning 69.
+        /// </summary>
+        public static string BIRTH_DATE_NOT_ALLOWED {
+            get {
+                return ResourceManager.GetString("BIRTH_DATE_NOT_ALLOWED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Blood Type not supported.
+        /// </summary>
+        public static string BLOOD_TYPE_NOT_SUPPOTED {
+            get {
+                return ResourceManager.GetString("BLOOD_TYPE_NOT_SUPPOTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Email already registered.
         /// </summary>
         public static string EMAIL_ALREADY_REGISTER {
@@ -93,6 +183,15 @@ namespace BloodDonationDb.Exceptions {
         public static string EMAIL_OR_PASSWORD_INVALID {
             get {
                 return ResourceManager.GetString("EMAIL_OR_PASSWORD_INVALID", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gender not supported.
+        /// </summary>
+        public static string GENDER_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("GENDER_NOT_SUPPORTED", resourceCulture);
             }
         }
         
@@ -133,6 +232,15 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to RH Factor not supported.
+        /// </summary>
+        public static string RH_FACTOR_NOT_SUPPORTED {
+            get {
+                return ResourceManager.GetString("RH_FACTOR_NOT_SUPPORTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Server error.
         /// </summary>
         public static string UNKNOW_ERROR {
@@ -147,6 +255,15 @@ namespace BloodDonationDb.Exceptions {
         public static string USER_WITHOUT_PERMISSION_ACCESS_RESOURCE {
             get {
                 return ResourceManager.GetString("USER_WITHOUT_PERMISSION_ACCESS_RESOURCE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Weight cannot be less than 50 kg and greater than 140 kg.
+        /// </summary>
+        public static string WEIGHT_NOT_ALLOWED {
+            get {
+                return ResourceManager.GetString("WEIGHT_NOT_ALLOWED", resourceCulture);
             }
         }
     }

@@ -1,6 +1,6 @@
-﻿using Azure.Core;
-using BloodDonationDb.Exceptions;
+﻿using BloodDonationDb.Exceptions;
 using CommomTestUtilities.Commands;
+using CommomTestUtilities.Token;
 using FluentAssertions;
 using System.Globalization;
 using System.Net;
@@ -10,17 +10,23 @@ using WebAPI.Test.InlineData;
 namespace WebAPI.Test.User;
 public class RegisterUserTest : BloodDonationDbClassFixture
 {
-    private readonly string method = "user";
+    private const string method = "user";
+
+    private readonly Guid _userId;
+
     public RegisterUserTest(CustomWebApplicationFactory factory) : base(factory)
     {
+        _userId = factory.GetUserId();
     }
 
     [Fact]
-    public async Task RegisterUser_Success()
+    public async Task Success()
     {
         var command = RegisterUserCommandBuilder.Builder();
 
-        var response = await PostAsync(method: method, command: command);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token);
 
         response.StatusCode.Should().Be(HttpStatusCode.Created);
 
@@ -36,10 +42,12 @@ public class RegisterUserTest : BloodDonationDbClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Name_Empty(string culture)
     {
-        var comand = RegisterUserCommandBuilder.Builder();
-        comand.Name = string.Empty;
+        var command = RegisterUserCommandBuilder.Builder();
+        command.Name = string.Empty;
 
-        var response = await PostAsync(method: method, command: comand, culture: culture);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -58,10 +66,12 @@ public class RegisterUserTest : BloodDonationDbClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Email_Empty(string culture)
     {
-        var comand = RegisterUserCommandBuilder.Builder();
-        comand.Email = string.Empty;
+        var command = RegisterUserCommandBuilder.Builder();
+        command.Email = string.Empty;
 
-        var response = await PostAsync(method: method, command: comand, culture: culture);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -80,10 +90,12 @@ public class RegisterUserTest : BloodDonationDbClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Email_Invalid(string culture)
     {
-        var comand = RegisterUserCommandBuilder.Builder();
-        comand.Email = "email.com.br";
+        var command = RegisterUserCommandBuilder.Builder();
+        command.Email = "email.com.br";
 
-        var response = await PostAsync(method: method, command: comand, culture: culture);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -102,10 +114,12 @@ public class RegisterUserTest : BloodDonationDbClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Password_Empty(string culture)
     {
-        var comand = RegisterUserCommandBuilder.Builder();
-        comand.Password = string.Empty;
+        var command = RegisterUserCommandBuilder.Builder();
+        command.Password = string.Empty;
 
-        var response = await PostAsync(method: method, command: comand, culture: culture);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 
@@ -124,10 +138,12 @@ public class RegisterUserTest : BloodDonationDbClassFixture
     [ClassData(typeof(CultureInlineDataTest))]
     public async Task Error_Password_Invalid(string culture)
     {
-        var comand = RegisterUserCommandBuilder.Builder();
-        comand.Password = "12345678910";
+        var command = RegisterUserCommandBuilder.Builder();
+        command.Password = "12345678910";
 
-        var response = await PostAsync(method: method, command: comand, culture: culture);
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(userIdentifier: _userId);
+
+        var response = await PostAsync(method: method, command: command, token: token, culture: culture);
 
         response.StatusCode.Should().Be(HttpStatusCode.BadRequest);
 

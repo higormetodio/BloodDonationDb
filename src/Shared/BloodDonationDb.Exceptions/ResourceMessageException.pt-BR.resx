@@ -121,10 +121,10 @@
     <value>E-mail já cadastrado</value>
   </data>
   <data name="EMAIL_EMPTY" xml:space="preserve">
-    <value>O e-mail não pode ser vazio</value>
+    <value>O e-mail não pode estar em branco</value>
   </data>
   <data name="EMAIL_INVALID" xml:space="preserve">
-    <value>O Email não é válido</value>
+    <value>O e-mail não é válido</value>
   </data>
   <data name="EMAIL_OR_PASSWORD_INVALID" xml:space="preserve">
     <value>E-mail e/ou senha inválidos</value>
@@ -133,10 +133,10 @@
     <value>A senha deve ter ao menor 8 caracteres, pelo menos 1 dígito, pelo menos 1 letra minúscula, pelo menos 1 letra maiúscula e pelo menos 1 caractere especial (!*@#$%^&amp;+=) </value>
   </data>
   <data name="NAME_EMPTY" xml:space="preserve">
-    <value>O nome não pode ser vazio</value>
+    <value>O nome não pode estar em branco</value>
   </data>
   <data name="PASSWORD_EMPTY" xml:space="preserve">
-    <value>A senha não pode ser vazia</value>
+    <value>A senha não pode ser vazio</value>
   </data>
   <data name="UNKNOW_ERROR" xml:space="preserve">
     <value>Erro do servidor</value>
@@ -146,5 +146,44 @@
   </data>
   <data name="USER_WITHOUT_PERMISSION_ACCESS_RESOURCE" xml:space="preserve">
     <value>Usuário sem acesso ao recurso</value>
+  </data>
+  <data name="BIRTH_DATE_NOT_ALLOWED" xml:space="preserve">
+    <value>Data de nascimento não permitida para doadores completando 69 anos</value>
+  </data>
+  <data name="GENDER_NOT_SUPPORTED" xml:space="preserve">
+    <value>Gênero não suportado</value>
+  </data>
+  <data name="WEIGHT_NOT_ALLOWED" xml:space="preserve">
+    <value>Peso não pode ser menor do que 50Kg e maior que 140 Kg</value>
+  </data>
+  <data name="BLOOD_TYPE_NOT_SUPPOTED" xml:space="preserve">
+    <value>Tipo sanguíneo não suportado</value>
+  </data>
+  <data name="RH_FACTOR_NOT_SUPPORTED" xml:space="preserve">
+    <value>Fator RH não suportado</value>
+  </data>
+  <data name="ADDRESS_STREET_EMPTY" xml:space="preserve">
+    <value>Em endereço, logradouro não pode estar em branco</value>
+  </data>
+  <data name="ADDRESS_NUMBER_EMPTY" xml:space="preserve">
+    <value>Em endereço, número não pode estar em branco</value>
+  </data>
+  <data name="ADDRESS_CITY_EMPTY" xml:space="preserve">
+    <value>Em endereço, cidade não pode estar em branco</value>
+  </data>
+  <data name="ADDRESS_STATE_EMPTY" xml:space="preserve">
+    <value>Em endereço, estado não pode estar em branco</value>
+  </data>
+  <data name="ADDRESS_ZIP_EMPTY" xml:space="preserve">
+    <value>Em endereço, CEP não pode estar em branco</value>
+  </data>
+  <data name="ADDRESS_COUNTRY_EMPTY" xml:space="preserve">
+    <value>Em endereço, país não pode estar em branco</value>
+  </data>
+  <data name="BIRTH_DATE_EMPTY" xml:space="preserve">
+    <value>Data de nascimento não pode estar em branco</value>
+  </data>
+  <data name="BIRTH_DATE_INVALID" xml:space="preserve">
+    <value>Data de nacimento inválida</value>
   </data>
 </root>
