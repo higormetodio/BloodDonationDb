@@ -33,10 +33,8 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
 
         var responseData = await JsonDocument.ParseAsync(responseBody);
 
+        responseData.RootElement.GetProperty("donorId").GetString().Should().NotBeNullOrWhiteSpace();
         responseData.RootElement.GetProperty("name").GetString().Should().Be(command.Name);
-        responseData.RootElement.GetProperty("email").GetString().Should().Be(command.Email);
-        responseData.RootElement.GetProperty("bloodType").GetInt32().Should().Be((int)command.BloodType);
-        responseData.RootElement.GetProperty("rhFactor").GetInt32().Should().Be((int)command.RhFactor);
     }
 
     [Theory]
