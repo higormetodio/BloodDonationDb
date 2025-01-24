@@ -1,8 +1,7 @@
-using BloodDonationDb.Domain.SeedWorks;
-
 namespace BloodDonationDb.Domain.Repositories.Donor;
 
 public interface IDonorReadOnlyRepository
 {
-    Task<bool> ExistActiveDonorWithEmail(string email);
+    public Task<Entities.Donor> GetDonorByEmailAsync(string email); 
+    public Task<bool> ExistActiveDonorWithEmail(string email);
 }

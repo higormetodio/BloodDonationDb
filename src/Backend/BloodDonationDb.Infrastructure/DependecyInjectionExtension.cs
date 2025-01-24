@@ -1,3 +1,5 @@
+using BloodDonationDb.Domain.Repositories.BloodStock;
+using BloodDonationDb.Domain.Repositories.DonationDonor;
 using BloodDonationDb.Domain.Repositories.Donor;
 using BloodDonationDb.Domain.Repositories.Token;
 using BloodDonationDb.Domain.Repositories.User;
@@ -56,6 +58,8 @@ public static class DependecyInjectionExtension
         service.AddScoped<IUserReadOnlyRepository, UserRepository>();
         service.AddScoped<IDonorWriteOnlyRepository, DonorRepository>();
         service.AddScoped<IDonorReadOnlyRepository, DonorRepository>();
+        service.AddScoped<IBloodStockReadOnlyRepository, BloodStockRepository>();
+        service.AddScoped<IDonationDonorWriteOnlyRepository, DonationDonorRepository>();
         service.AddScoped<IUnitOfWork, UnitOfWork>();
         service.AddScoped<ITokenRepository, TokenRepository>();
     }
