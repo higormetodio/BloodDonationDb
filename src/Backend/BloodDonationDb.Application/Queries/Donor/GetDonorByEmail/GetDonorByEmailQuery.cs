@@ -1,9 +1,8 @@
-﻿using BloodDonationDb.Application.Models;
-using BloodDonationDb.Application.Models.Donor;
+﻿using BloodDonationDb.Application.Models.Donor;
 using MediatR;
 
 namespace BloodDonationDb.Application.Queries.Donor.GetDonor;
-public class GetDonorByEmailQuery : IRequest<ResultViewModel<DonorViewModel>>
+public class GetDonorByEmailQuery : IRequest<DonorViewModel>
 {
     public GetDonorByEmailQuery(string email)
     {

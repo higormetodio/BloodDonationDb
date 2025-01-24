@@ -1,4 +1,4 @@
-﻿using BloodDonationDb.API.Attributes;
+﻿using Azure;
 using BloodDonationDb.Application.Commands.Donor.Register;
 using BloodDonationDb.Application.Models;
 using BloodDonationDb.Application.Models.Donor;
@@ -20,22 +20,23 @@ public class DonorController : MyBloodDonationDbController
 
     [HttpGet("{email}")]
     [ProducesResponseType(typeof(DonorViewModel), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResultViewModel), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetDonor([FromRoute]string email)
     {
         var query = new GetDonorByEmailQuery(email);
 
         var result = await _mediator.Send(query);
 
-        return Ok(result.Data);
+        return Ok(result);
     }
     
     [HttpPost]
     [ProducesResponseType(typeof(RegisterDonorViewModel), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterDonor([FromBody]RegisterDonorCommand command)
     {
         var result = await _mediator.Send(command);
 
-        return Created(string.Empty, result.Data);
+        return Created(string.Empty, result);
     }
 }

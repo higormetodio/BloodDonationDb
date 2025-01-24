@@ -1,5 +1,4 @@
-﻿using BloodDonationDb.Application.Models;
-using BloodDonationDb.Application.Models.DonorDonation;
+﻿using BloodDonationDb.Application.Models.DonorDonation;
 using BloodDonationDb.Domain.Repositories.BloodStock;
 using BloodDonationDb.Domain.Repositories.DonationDonor;
 using BloodDonationDb.Domain.Repositories.Donor;
@@ -7,7 +6,7 @@ using BloodDonationDb.Domain.SeedWorks;
 using MediatR;
 
 namespace BloodDonationDb.Application.Commands.DonorDonation.Register;
-public class RegisterDonationDonorHandler : IRequestHandler<RegisterDonationDonorCommand, ResultViewModel<RegisterDonationDonorViewModel>>
+public class RegisterDonationDonorHandler : IRequestHandler<RegisterDonationDonorCommand, RegisterDonationDonorViewModel>
 {
     private readonly IDonationDonorWriteOnlyRepository _donationDonorWriteOnlyRepository;
     private readonly IDonorReadOnlyRepository _donorReadOnlyRepository;
@@ -26,7 +25,7 @@ public class RegisterDonationDonorHandler : IRequestHandler<RegisterDonationDono
         
     }
 
-    public async Task<ResultViewModel<RegisterDonationDonorViewModel>> Handle(RegisterDonationDonorCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterDonationDonorViewModel> Handle(RegisterDonationDonorCommand request, CancellationToken cancellationToken)
     {
         var donor = await _donorReadOnlyRepository.GetDonorByEmailAsync(request.Email!);
 
@@ -40,6 +39,6 @@ public class RegisterDonationDonorHandler : IRequestHandler<RegisterDonationDono
 
         var registerDonationDonorViewModel = RegisterDonationDonorViewModel.FromEntity(donor, bloodStock, donationDonor);
 
-        return ResultViewModel<RegisterDonationDonorViewModel>.Success(registerDonationDonorViewModel);
+        return registerDonationDonorViewModel;
     }
 }

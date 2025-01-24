@@ -20,9 +20,9 @@ public class RegisterUserHandlerTest
         
         var handler = CreateHandler();
 
-        var resultViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        var registerUserViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
 
-        var result = resultViewModel.Data;
+        var result = registerUserViewModel;
 
         result.Should().NotBeNull();
         result!.Name.Should().Be(command.Name);

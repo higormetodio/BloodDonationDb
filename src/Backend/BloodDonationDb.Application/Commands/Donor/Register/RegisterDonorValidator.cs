@@ -1,5 +1,4 @@
-﻿using BloodDonationDb.Domain.Enums;
-using BloodDonationDb.Domain.ValueObjects;
+﻿using BloodDonationDb.Domain.ValueObjects;
 using BloodDonationDb.Exceptions;
 using FluentValidation;
 

@@ -1,4 +1,6 @@
-﻿using BloodDonationDb.Application.Commands.DonorDonation.Register;
+﻿using Azure;
+using BloodDonationDb.Application.Commands.DonorDonation.Register;
+using BloodDonationDb.Application.Models.DonorDonation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -14,6 +16,8 @@ public class DonationDonorController : MyBloodDonationDbController
     }
 
     [HttpPost]
+    [ProducesResponseType(typeof(RegisterDonationDonorViewModel), StatusCodes.Status201Created)]
+    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterDonorDonation([FromBody]RegisterDonationDonorCommand command)
     {
         var result = await _mediator.Send(command);
