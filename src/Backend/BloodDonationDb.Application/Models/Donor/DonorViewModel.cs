@@ -5,7 +5,7 @@ namespace BloodDonationDb.Application.Models.Donor;
 public class DonorViewModel
 {
     public DonorViewModel(Guid donorId, string? name, string? email, DateTime birthDate, Gender gender, 
-        int weight, bool isDonor, DateTime lastDonation, DateTime nextDonation, BloodType bloodType, 
+        int weight, bool isDonor, DateTime? lastDonation, DateTime? nextDonation, BloodType bloodType, 
         RhFactor rhFactor, Address? address, bool active)
     {
         DonorId = donorId;
@@ -30,8 +30,8 @@ public class DonorViewModel
     public Gender Gender { get; private set; }
     public int Weight { get; private set; }
     public bool IsDonor { get; private set; }
-    public DateTime LastDonation { get; private set; }
-    public DateTime NextDonation { get; private set; }
+    public DateTime? LastDonation { get; private set; }
+    public DateTime? NextDonation { get; private set; }
     public BloodType BloodType { get; private set; }
     public RhFactor RhFactor { get; private set; }
     public Address? Address { get; private set; }

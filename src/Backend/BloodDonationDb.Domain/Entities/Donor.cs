@@ -14,8 +14,6 @@ public class Donor : Entity, IAggregateRoot
         Gender = gender;
         Weight = weight;
         IsDonor = CanBeADonor(birthDate);
-        LastDonation = DateTime.Now.Date;
-        NextDonation = DateTime.Now.Date;
         BloodType = bloodType;
         RhFactor = rhFactor;
         Address = address;
@@ -31,8 +29,8 @@ public class Donor : Entity, IAggregateRoot
     public Gender Gender { get; private set; }
     public int Weight { get; private set; }
     public bool IsDonor { get; private set; }
-    public DateTime LastDonation { get; private set; }
-    public DateTime NextDonation { get; private set; }
+    public DateTime? LastDonation { get; private set; }
+    public DateTime? NextDonation { get; private set; }
     public BloodType BloodType { get; private set; }
     public RhFactor RhFactor { get; private set; }
     public Address? Address { get; private set; }
