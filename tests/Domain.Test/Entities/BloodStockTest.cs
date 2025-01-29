@@ -7,7 +7,7 @@ using FluentAssertions;
 namespace Domain.Test.Entities;
 public class BloodStockTest
 {
-    private readonly BloodStock _bloodStock = BloodStockBuilder.Builder();
+    private readonly BloodStock _bloodStock = BloodStockBuilder.Builder(DonorBuilder.Builder());
 
     [Fact]
     public void Success_Created_BloodStock()
@@ -24,7 +24,7 @@ public class BloodStockTest
     [Fact]
     public void Success_Update_Quantity_When_To_Call_UpdateStockDonation_Method()
     {
-        _bloodStock.UpdateStockDonation(420);
+        _bloodStock.UpdateStockDonationDonor(420);
 
         _bloodStock.Quantity.Should().Be(420);
     }
@@ -32,8 +32,8 @@ public class BloodStockTest
     [Fact]
     public void Success_Update_Quantity_When_To_Call_UpdateStockReceived_Method()
     {
-        _bloodStock.UpdateStockDonation(420);
-        _bloodStock.UpdateStockReceived(420);
+        _bloodStock.UpdateStockDonationDonor(420);
+        _bloodStock.UpdateStockDonationReceiver(420);
 
         _bloodStock.Quantity.Should().Be(0);
     }
@@ -41,7 +41,7 @@ public class BloodStockTest
     [Fact]
     public void Success_Update_False_MinimumQuantityReached_When_To_Call_IsMinimumQuantityReached()
     {
-        _bloodStock.UpdateStockDonation(4500);
+        _bloodStock.UpdateStockDonationDonor(4500);
 
         _bloodStock.MinimumQuantityReached.Should().BeFalse();
     }

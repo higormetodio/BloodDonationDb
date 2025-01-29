@@ -20,13 +20,13 @@ public class LoginUserHandlerTest
 
         var handler = CreateHandler(user);
 
-        var resultViewModel = await handler.Handle(request: new LoginUserCommand
+        var registerUserViewModel = await handler.Handle(request: new LoginUserCommand
         {
             Email = user.Email,
             Password = password
         }, cancellationToken: CancellationToken.None);
 
-        var result = resultViewModel.Data;
+        var result = registerUserViewModel;
 
         result.Should().NotBeNull();
         result!.Token.Should().NotBeNull();

@@ -1,9 +1,8 @@
-﻿using BloodDonationDb.Application.Models;
-using BloodDonationDb.Application.Models.User;
+﻿using BloodDonationDb.Application.Models.User;
 using MediatR;
 
 namespace BloodDonationDb.Application.Commands.User.Register;
-public class RegisterUserCommand : IRequest<ResultViewModel<RegisterUserViewModel>>
+public class RegisterUserCommand : IRequest<RegisterUserViewModel>
 {   
     public string? Name { get; set; }
     public string? Email { get; set; }

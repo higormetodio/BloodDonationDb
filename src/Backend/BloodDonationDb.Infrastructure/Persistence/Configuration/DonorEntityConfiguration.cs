@@ -41,11 +41,9 @@ public class DonorEntityConfiguration : IEntityTypeConfiguration<Donor>
             .HasColumnType("bit");
 
         builder.Property(donor => donor.LastDonation)
-            .IsRequired()
             .HasColumnType("datetime");
 
         builder.Property(donor => donor.NextDonation)
-            .IsRequired()
             .HasColumnType("datetime");
 
         builder.Property(donor => donor.BloodType)

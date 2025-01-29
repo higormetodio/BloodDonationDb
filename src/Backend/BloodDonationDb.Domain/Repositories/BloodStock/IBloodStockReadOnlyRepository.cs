@@ -1,9 +1,8 @@
-using BloodDonationDb.Domain.Entities;
-using BloodDonationDb.Domain.SeedWorks;
+using BloodDonationDb.Domain.Enums;
 
 namespace BloodDonationDb.Domain.Repositories.BloodStock;
 
 public interface IBloodStockReadOnlyRepository
 {
-    Task<Entities.BloodStock> GetAllBloodStockAsync();
+    Task<Entities.BloodStock> GetBloodStockAsync(BloodType bloodType, RhFactor rhFactor);
 }

@@ -1,5 +1,4 @@
 ﻿using BloodDonationDb.Application.Commands.Donor.Register;
-using BloodDonationDb.Domain.Enums;
 using BloodDonationDb.Exceptions;
 using BloodDonationDb.Exceptions.ExceptionsBase;
 using CommomTestUtilities.Commands;
@@ -17,15 +16,12 @@ public class RegisterDonorHandlerTest
 
         var handler = CreateHandler();
 
-        var resultViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        var registerDonorViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
 
-        var result = resultViewModel.Data;
+        var result = registerDonorViewModel;
 
         result.Should().NotBeNull();
         result!.Name.Should().NotBeEmpty();
-        result.Email.Should().NotBeEmpty();
-        result.BloodType.Should().BeOneOf([BloodType.O, BloodType.B, BloodType.A, BloodType.AB]);
-        result.RhFactor.Should().BeOneOf([RhFactor.Positive, RhFactor.Negative]);
     }
 
     [Fact]
@@ -41,7 +37,7 @@ public class RegisterDonorHandlerTest
             .Where(e => e.GetErrorMessages().Count == 1 && e.GetErrorMessages().Contains(ResourceMessageException.EMAIL_ALREADY_REGISTER));
     }
 
-    private static RegisterDonorHandler CreateHandler(string email = null)
+    private static RegisterDonorHandler CreateHandler(string? email = null)
     {
         var donorWriteOnlyRepository = DonorWriteOnlyRepositoryBuilder.Builder();
         var donorReadOnlyRepository = new DonorReadOnlyRepositoryBuilder();

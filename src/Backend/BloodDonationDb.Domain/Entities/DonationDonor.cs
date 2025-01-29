@@ -13,5 +13,5 @@ public class DonationDonor : Donation
     public Guid DonorId { get; private set; }
     public Donor? Donor { get; private set; }
     public Guid BloodStockId { get; private set; }
-    public BloodStock? BloodStock { get; set; }
+    public BloodStock? BloodStock { get; private set; }
 }

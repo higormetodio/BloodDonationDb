@@ -1,5 +1,4 @@
-﻿using BloodDonationDb.Application.Models;
-using BloodDonationDb.Application.Models.Donor;
+﻿using BloodDonationDb.Application.Models.Donor;
 using BloodDonationDb.Domain.Repositories.Donor;
 using BloodDonationDb.Domain.SeedWorks;
 using BloodDonationDb.Exceptions;
@@ -7,7 +6,7 @@ using BloodDonationDb.Exceptions.ExceptionsBase;
 using MediatR;
 
 namespace BloodDonationDb.Application.Commands.Donor.Register;
-public class RegisterDonorHandler : IRequestHandler<RegisterDonorCommand, ResultViewModel<RegisterDonorViewModel>>
+public class RegisterDonorHandler : IRequestHandler<RegisterDonorCommand, RegisterDonorViewModel>
 {
     private readonly IDonorWriteOnlyRepository _donorWriteOnlyRepository;
     private readonly IDonorReadOnlyRepository _donorReadOnlyRepository;
@@ -20,7 +19,7 @@ public class RegisterDonorHandler : IRequestHandler<RegisterDonorCommand, Result
         _unitOfWork = unitOfWork;        
     }
 
-    public async Task<ResultViewModel<RegisterDonorViewModel>> Handle(RegisterDonorCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterDonorViewModel> Handle(RegisterDonorCommand request, CancellationToken cancellationToken)
     {
         await Validate(request);
 
@@ -32,7 +31,7 @@ public class RegisterDonorHandler : IRequestHandler<RegisterDonorCommand, Result
 
         var responseRegisterDonor = RegisterDonorViewModel.FromEntity(donor);
 
-        return ResultViewModel<RegisterDonorViewModel>.Success(responseRegisterDonor);
+        return responseRegisterDonor;
     }
 
     private async Task Validate(RegisterDonorCommand command)

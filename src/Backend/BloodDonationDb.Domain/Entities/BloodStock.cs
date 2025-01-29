@@ -28,13 +28,13 @@ public class BloodStock : Entity, IAggregateRoot
     public IEnumerable<DonationReceiver>? DonationReceivers { get; private set; }
 
 
-    public void UpdateStockDonation(int quantity)
+    public void UpdateStockDonationDonor(int quantity)
     {
         Quantity += quantity;
         IsMinimumQuantityReached();
     }
 
-    public void UpdateStockReceived(int quantity)
+    public void UpdateStockDonationReceiver(int quantity)
     {
         Quantity -= quantity;
         IsMinimumQuantityReached();

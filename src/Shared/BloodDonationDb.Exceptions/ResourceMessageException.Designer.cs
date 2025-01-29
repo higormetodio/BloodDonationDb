@@ -115,7 +115,7 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Birth date cannou be empty.
+        ///   Looks up a localized string similar to Birth date cannot be empty.
         /// </summary>
         public static string BIRTH_DATE_EMPTY {
             get {
@@ -147,6 +147,60 @@ namespace BloodDonationDb.Exceptions {
         public static string BLOOD_TYPE_NOT_SUPPOTED {
             get {
                 return ResourceManager.GetString("BLOOD_TYPE_NOT_SUPPOTED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donation date cannot be empty.
+        /// </summary>
+        public static string DONATION_DATE_EMPTY {
+            get {
+                return ResourceManager.GetString("DONATION_DATE_EMPTY", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The donation date cannot be greater than the current date.
+        /// </summary>
+        public static string DONATION_DATE_GREATER_CURRENT_DATE {
+            get {
+                return ResourceManager.GetString("DONATION_DATE_GREATER_CURRENT_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The next donation date for the donor must be from.
+        /// </summary>
+        public static string DONATION_NOT_ALLOWED_NEXT_DONATION_DATE {
+            get {
+                return ResourceManager.GetString("DONATION_NOT_ALLOWED_NEXT_DONATION_DATE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The quantity donat must be between 420 and 470 ml.
+        /// </summary>
+        public static string DONATION_QUANTITY_NOT_ALLOWED {
+            get {
+                return ResourceManager.GetString("DONATION_QUANTITY_NOT_ALLOWED", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor cannot yet make a donation. Donor is under 18 years old..
+        /// </summary>
+        public static string DONOR_CANNOT_DONATION {
+            get {
+                return ResourceManager.GetString("DONOR_CANNOT_DONATION", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Donor not found.
+        /// </summary>
+        public static string DONOR_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("DONOR_NOT_FOUND", resourceCulture);
             }
         }
         

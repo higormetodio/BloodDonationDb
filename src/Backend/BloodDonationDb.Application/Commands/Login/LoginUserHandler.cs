@@ -1,19 +1,13 @@
-﻿using BloodDonationDb.Application.Models;
-using BloodDonationDb.Application.Models.Token;
+﻿using BloodDonationDb.Application.Models.Token;
 using BloodDonationDb.Application.Models.User;
 using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
 using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Exceptions.ExceptionsBase;
 using MediatR;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace BloodDonationDb.Application.Commands.Login;
-public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewModel<RegisterUserViewModel>>
+public class LoginUserHandler : IRequestHandler<LoginUserCommand, RegisterUserViewModel>
 {
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
     private readonly IPasswordEncripter _passwordEncripter;
@@ -26,7 +20,7 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewMode
         _accessTokenGenerator = accessTokenGenerator;
     }
 
-    public async Task<ResultViewModel<RegisterUserViewModel>> Handle(LoginUserCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterUserViewModel> Handle(LoginUserCommand request, CancellationToken cancellationToken)
     {        
         var user = await _userReadOnlyRepository.GetByEmailAsync(request.Email!);
 
@@ -45,6 +39,6 @@ public class LoginUserHandler : IRequestHandler<LoginUserCommand, ResultViewMode
             }
         };
 
-        return ResultViewModel<RegisterUserViewModel>.Success(responseRegisterUser);
+        return responseRegisterUser;
     }
 }
