@@ -4,7 +4,7 @@ using BloodDonationDb.Domain.Repositories.BloodStock;
 using Microsoft.EntityFrameworkCore;
 
 namespace BloodDonationDb.Infrastructure.Persistence.Repositories;
-public class BloodStockRepository : IBloodStockReadOnlyRepository
+public class BloodStockRepository : IBloodStockReadOnlyRepository, IBloodStockUpdateOnlyRepository
 {
     private readonly BloodDonationDbContext _dbContext;
 
@@ -18,4 +18,7 @@ public class BloodStockRepository : IBloodStockReadOnlyRepository
         .BloodStocks
         .AsNoTracking()
         .SingleOrDefaultAsync(stock => stock.BloodType.Equals(bloodType) && stock.RhFactor.Equals(rhFactor));
+
+    public void UpdateBloodStock(BloodStock bloodStock)
+        => _dbContext.BloodStocks.Update(bloodStock);
 }

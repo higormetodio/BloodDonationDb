@@ -9,5 +9,8 @@ public class GetDonorByEmailQuery : IRequest<DonorViewModel>
         Email = email;
     }
 
+    public GetDonorByEmailQuery()
+    {}
+
     public string Email { get; private set; }
 }

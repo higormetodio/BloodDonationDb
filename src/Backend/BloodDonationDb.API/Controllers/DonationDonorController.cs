@@ -1,11 +1,13 @@
 ﻿using Azure;
-using BloodDonationDb.Application.Commands.DonorDonation.Register;
+using BloodDonationDb.API.Attributes;
+using BloodDonationDb.Application.Commands.DonationDonor.Register;
 using BloodDonationDb.Application.Models.DonorDonation;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonationDb.API.Controllers;
 
+[AuthenticatedUser]
 public class DonationDonorController : MyBloodDonationDbController
 {
     private readonly IMediator _mediator;

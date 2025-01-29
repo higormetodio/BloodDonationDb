@@ -4,5 +4,5 @@ namespace BloodDonationDb.Domain.Repositories.Donor;
 
 public interface IDonorWriteOnlyRepository
 {
-   public Task AddDonorAsync(Entities.Donor donor);
+   Task AddDonorAsync(Entities.Donor donor);
 }

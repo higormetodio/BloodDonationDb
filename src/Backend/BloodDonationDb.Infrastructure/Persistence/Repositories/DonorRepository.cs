@@ -3,7 +3,7 @@ using BloodDonationDb.Domain.Repositories.Donor;
 using Microsoft.EntityFrameworkCore;
 
 namespace BloodDonationDb.Infrastructure.Persistence.Repositories;
-public class DonorRepository : IDonorWriteOnlyRepository, IDonorReadOnlyRepository
+public class DonorRepository : IDonorWriteOnlyRepository, IDonorReadOnlyRepository, IDonorUpdateOnlyRepository
 {
     private readonly BloodDonationDbContext _dbContext;
 
@@ -20,4 +20,6 @@ public class DonorRepository : IDonorWriteOnlyRepository, IDonorReadOnlyReposito
     public async Task<bool> ExistActiveDonorWithEmail(string email) 
         => await _dbContext.Donors.AnyAsync(donor => donor.Email!.Equals(email) && donor.Active);
 
+    public void UpdateDonor(Donor donor)
+        => _dbContext.Donors.Update(donor);
 }

@@ -58,7 +58,9 @@ public static class DependecyInjectionExtension
         service.AddScoped<IUserReadOnlyRepository, UserRepository>();
         service.AddScoped<IDonorWriteOnlyRepository, DonorRepository>();
         service.AddScoped<IDonorReadOnlyRepository, DonorRepository>();
+        service.AddScoped<IDonorUpdateOnlyRepository, DonorRepository>();
         service.AddScoped<IBloodStockReadOnlyRepository, BloodStockRepository>();
+        service.AddScoped<IBloodStockUpdateOnlyRepository, BloodStockRepository>();
         service.AddScoped<IDonationDonorWriteOnlyRepository, DonationDonorRepository>();
         service.AddScoped<IUnitOfWork, UnitOfWork>();
         service.AddScoped<ITokenRepository, TokenRepository>();

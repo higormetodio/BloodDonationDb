@@ -52,9 +52,9 @@ public class Donor : Entity, IAggregateRoot
 
     public void UpdateLastDonation(DateTime lastDonation)
     {
-        LastDonation = lastDonation;
+        LastDonation = lastDonation.Date;
 
-        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? BloodDonationRuleConstants.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstants.DAYS_NEXT_DONATION_MAN);
+        NextDonation = lastDonation.Date.AddDays(Gender == Gender.Female ? BloodDonationRuleConstants.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstants.DAYS_NEXT_DONATION_MAN);
     }
     
     public void ToInactive()

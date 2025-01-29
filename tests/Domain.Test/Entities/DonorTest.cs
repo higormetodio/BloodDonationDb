@@ -22,8 +22,8 @@ public class DonorTest
         _donor.Address.Should().NotBeNull();
         _donor.Active.Should().BeTrue();
         _donor.Donations.Should().BeNullOrEmpty();
-        _donor.LastDonation.Should().Be(DateTime.Now.Date);
-        _donor.NextDonation.Should().Be(DateTime.Now.Date);
+        _donor.LastDonation.Should().BeNull();
+        _donor.NextDonation.Should().BeNull();
 
     }
 

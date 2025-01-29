@@ -42,7 +42,7 @@ public class RegisterUserHandlerTest
             .Where(e => e.GetErrorMessages().Count == 1 && e.GetErrorMessages().Contains(ResourceMessageException.EMAIL_ALREADY_REGISTER));
     }
       
-    private static RegisterUserHandler CreateHandler(string email = null)
+    private static RegisterUserHandler CreateHandler(string? email = null)
     {                
         var userWriteOnlyRepository = UserWriteOnlyRepositoryBuilder.Builder();
         var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();

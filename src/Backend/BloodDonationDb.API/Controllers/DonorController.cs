@@ -1,4 +1,5 @@
 ﻿using Azure;
+using BloodDonationDb.API.Attributes;
 using BloodDonationDb.Application.Commands.Donor.Register;
 using BloodDonationDb.Application.Models;
 using BloodDonationDb.Application.Models.Donor;
@@ -8,7 +9,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace BloodDonationDb.API.Controllers;
 
-//[AuthenticatedUser]
+[AuthenticatedUser]
 public class DonorController : MyBloodDonationDbController
 {
     private readonly IMediator _mediator;

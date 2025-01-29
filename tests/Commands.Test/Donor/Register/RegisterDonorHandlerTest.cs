@@ -1,5 +1,4 @@
 ﻿using BloodDonationDb.Application.Commands.Donor.Register;
-using BloodDonationDb.Domain.Enums;
 using BloodDonationDb.Exceptions;
 using BloodDonationDb.Exceptions.ExceptionsBase;
 using CommomTestUtilities.Commands;
@@ -38,7 +37,7 @@ public class RegisterDonorHandlerTest
             .Where(e => e.GetErrorMessages().Count == 1 && e.GetErrorMessages().Contains(ResourceMessageException.EMAIL_ALREADY_REGISTER));
     }
 
-    private static RegisterDonorHandler CreateHandler(string email = null)
+    private static RegisterDonorHandler CreateHandler(string? email = null)
     {
         var donorWriteOnlyRepository = DonorWriteOnlyRepositoryBuilder.Builder();
         var donorReadOnlyRepository = new DonorReadOnlyRepositoryBuilder();

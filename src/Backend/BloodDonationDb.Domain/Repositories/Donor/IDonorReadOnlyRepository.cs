@@ -2,6 +2,7 @@ namespace BloodDonationDb.Domain.Repositories.Donor;
 
 public interface IDonorReadOnlyRepository
 {
-    public Task<Entities.Donor> GetDonorByEmailAsync(string email); 
-    public Task<bool> ExistActiveDonorWithEmail(string email);
+    Task<Entities.Donor> GetDonorByEmailAsync(string email); 
+
+    Task<bool> ExistActiveDonorWithEmail(string email);
 }
