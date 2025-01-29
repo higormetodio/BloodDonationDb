@@ -24,6 +24,14 @@ public class ReceiverEntityConfiguration : IEntityTypeConfiguration<Receiver>
             .IsRequired()
             .HasColumnType("nvarchar(255)");
 
+        builder.Property(receiver => receiver.BloodType)
+            .IsRequired()
+            .HasColumnType("int");
+
+        builder.Property(receiver => receiver.RhFactor)
+            .IsRequired()
+            .HasColumnType("int");
+
         builder.OwnsOne(receiver => receiver.Address, address =>
         {
             address.Property(a => a.Street)

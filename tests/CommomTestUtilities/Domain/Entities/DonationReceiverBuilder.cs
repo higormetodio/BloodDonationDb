@@ -7,7 +7,7 @@ public class DonationReceiverBuilder
     public static DonationReceiver Builder()
     {
         var receiver = ReceiverBuilder.Builder();
-        var bloodStock = BloodStockBuilder.Builder();
+        var bloodStock = BloodStockBuilder.Builder(receiver);
 
         return new Faker<DonationReceiver>()
             .CustomInstantiator(faker => new DonationReceiver(receiver.Id, bloodStock.Id,

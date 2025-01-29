@@ -21,6 +21,6 @@ public class LoginController : MyBloodDonationDbController
     {
         var request = await _mediator.Send(command);
 
-        return Ok(request.Data);
+        return Ok(request);
     }
 }

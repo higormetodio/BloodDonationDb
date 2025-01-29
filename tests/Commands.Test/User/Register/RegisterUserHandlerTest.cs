@@ -20,9 +20,9 @@ public class RegisterUserHandlerTest
         
         var handler = CreateHandler();
 
-        var resultViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
+        var registerUserViewModel = await handler.Handle(request: command, cancellationToken: CancellationToken.None);
 
-        var result = resultViewModel.Data;
+        var result = registerUserViewModel;
 
         result.Should().NotBeNull();
         result!.Name.Should().Be(command.Name);
@@ -42,7 +42,7 @@ public class RegisterUserHandlerTest
             .Where(e => e.GetErrorMessages().Count == 1 && e.GetErrorMessages().Contains(ResourceMessageException.EMAIL_ALREADY_REGISTER));
     }
       
-    private static RegisterUserHandler CreateHandler(string email = null)
+    private static RegisterUserHandler CreateHandler(string? email = null)
     {                
         var userWriteOnlyRepository = UserWriteOnlyRepositoryBuilder.Builder();
         var userReadOnlyRepository = new UserReadOnlyRepositoryBuilder();

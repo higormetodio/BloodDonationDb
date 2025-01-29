@@ -17,6 +17,14 @@ public class BloodDonationDbClassFixture : IClassFixture<CustomWebApplicationFac
         return await _httpClient.PostAsJsonAsync(method, command);
     }
 
+    protected async Task<HttpResponseMessage> GetAsync(string method, string token = "", string culture = "en")
+    {
+        ChangeRquestCulture(culture);
+        AuthorizeRequest(token);
+
+        return await _httpClient.GetAsync(method);
+    }
+
     private void ChangeRquestCulture(string culture)
     {
         if (_httpClient.DefaultRequestHeaders.Contains("Accept-Language"))

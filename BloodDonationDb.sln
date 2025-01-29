@@ -33,6 +33,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BloodDonationDb.Exceptions"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Validators.Test", "tests\Validators.Test\Validators.Test.csproj", "{64B48393-3CE1-4978-B30A-CCEE170D9C38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Queries.Test", "tests\Queries.Test\Queries.Test.csproj", "{3A10C8BA-12FF-42CB-B1CF-D7150646874C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +85,10 @@ Global
 		{64B48393-3CE1-4978-B30A-CCEE170D9C38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64B48393-3CE1-4978-B30A-CCEE170D9C38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64B48393-3CE1-4978-B30A-CCEE170D9C38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3A10C8BA-12FF-42CB-B1CF-D7150646874C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3A10C8BA-12FF-42CB-B1CF-D7150646874C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3A10C8BA-12FF-42CB-B1CF-D7150646874C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3A10C8BA-12FF-42CB-B1CF-D7150646874C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -101,5 +107,6 @@ Global
 		{7620ABC1-6D7B-4F32-96CC-A2B090821466} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
 		{7BFE9DF9-CD3C-41A4-80D8-B3B150062AA1} = {B0CC6BC5-F22A-42FA-BA18-D55CC7C0BB1E}
 		{64B48393-3CE1-4978-B30A-CCEE170D9C38} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
+		{3A10C8BA-12FF-42CB-B1CF-D7150646874C} = {235D4860-D51D-4DE4-8E29-F49DB1DDF5F7}
 	EndGlobalSection
 EndGlobal
