@@ -1,17 +1,8 @@
-﻿using BloodDonationDb.Domain.Entities;
-using CommomTestUtilities.Commands;
-using CommomTestUtilities.Token;
+﻿using CommomTestUtilities.Token;
 using FluentAssertions;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
-using ZstdSharp.Unsafe;
 
-namespace WebAPI.Test.Donor.GetByEmail;
+namespace WebAPI.Test.Donor.GetDonorByEmail;
 public class GetDonorByEmailInvalidTokenTest : BloodDonationDbClassFixture
 {
     private const string METHOD = "donor";

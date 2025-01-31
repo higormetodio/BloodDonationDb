@@ -39,8 +39,8 @@ public class BloodEntityConfiguration : IEntityTypeConfiguration<BloodStock>
 
         builder.HasData(
             new BloodStock(BloodType.A, RhFactor.Positive),
-            new BloodStock(BloodType.A, RhFactor.Negative),
-            new BloodStock(BloodType.B, RhFactor.Positive),
+            new BloodStock(BloodType.A, RhFactor.Negative),             
+            new BloodStock(BloodType.B, RhFactor.Positive),           
             new BloodStock(BloodType.B, RhFactor.Negative),
             new BloodStock(BloodType.AB, RhFactor.Positive),
             new BloodStock(BloodType.AB, RhFactor.Negative),

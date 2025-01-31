@@ -1,5 +1,4 @@
-﻿using BloodDonationDb.Application.Queries.Donor.GetDonorByEmail;
-using BloodDonationDb.Domain.Enums;
+﻿using BloodDonationDb.Application.Queries.Donor.GetDonorDonationsByEmail;
 using BloodDonationDb.Exceptions;
 using BloodDonationDb.Exceptions.ExceptionsBase;
 using CommomTestUtilities.Queries;
@@ -7,12 +6,12 @@ using CommomTestUtilities.Repositories.Donor;
 using FluentAssertions;
 
 namespace Queries.Test.Donor;
-public class GetDonorByEmailTest
+public class GetDonorDonationsByEmailHandlerTest
 {
     [Fact]
     public async Task Success()
     {
-        var (donor, command) = GetDonorByEmailQueryBuilder.Builder();
+        var (donor, command) = GetDonorDonationsByEmailQueryBuilder.Builder();
 
         var handler = CreateHandler(donor);
 
@@ -22,21 +21,14 @@ public class GetDonorByEmailTest
         result.DonorId.Should().NotBe(default(Guid));
         result.Name.Should().NotBeNullOrEmpty();
         result.Email.Should().NotBeNullOrEmpty();
-        result.BirthDate.Should().NotBe(default(DateTime));
-        result.Gender.Should().BeOneOf(Gender.Male, Gender.Female);
-        result.Weight.Should().BeInRange(140, 210);
         result.BloodType.Should().BeOneOf(["A", "B", "O", "AB"]);
         result.RhFactor.Should().BeOneOf(["Positive", "Negative"]);
-        result.Address.Should().NotBeNull();
-        result.Active.Should().BeTrue();
-        result.LastDonation.Should().BeNull();
-        result.NextDonation.Should().BeNull();
     }
 
     [Fact]
     public async Task Error_Donor_Not_Found()
     {
-        var (_, command) = GetDonorByEmailQueryBuilder.Builder();
+        var (_, command) = GetDonorDonationsByEmailQueryBuilder.Builder();
 
         var handler = CreateHandler();
 
@@ -46,15 +38,15 @@ public class GetDonorByEmailTest
             .Where(e => e.GetErrorMessages().Count == 1 && e.GetErrorMessages().Contains(ResourceMessageException.DONOR_NOT_FOUND));
     }
 
-    public GetDonorByEmailHandler CreateHandler(BloodDonationDb.Domain.Entities.Donor? donor = null)
+    public GetDonorDonationsByEmailHandler CreateHandler(BloodDonationDb.Domain.Entities.Donor? donor = null)
     {
         var donoReadOnlyRepository = new DonorReadOnlyRepositoryBuilder();
 
         if (donor is not null)
         {
-            donoReadOnlyRepository.GetDonorByEmail(donor);
+            donoReadOnlyRepository.GetDonorDonationsByEmail(donor);
         }
 
-        return new GetDonorByEmailHandler(donoReadOnlyRepository.Builder());
+        return new GetDonorDonationsByEmailHandler(donoReadOnlyRepository.Builder());
     }
 }
