@@ -11,6 +11,11 @@ public class DonorReadOnlyRepositoryBuilder
         _repository.GetDonorByEmailAsync(donor.Email!).Returns(Task.FromResult(donor));
     }
 
+    public void GetDonorDonationsByEmail(BloodDonationDb.Domain.Entities.Donor donor)
+    {
+        _repository.GetDonorDonationsByEmailAsync(donor.Email!).Returns(Task.FromResult(donor));
+    }
+
     public void ExistActiveDonorWithEmail(string email)
     {
         _repository.ExistActiveDonorWithEmail(email).Returns(Task.FromResult(true));

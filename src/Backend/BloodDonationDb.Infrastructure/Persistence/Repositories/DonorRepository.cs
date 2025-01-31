@@ -15,7 +15,15 @@ public class DonorRepository : IDonorWriteOnlyRepository, IDonorReadOnlyReposito
     public async Task AddDonorAsync(Donor donor) => await _dbContext.Donors.AddAsync(donor);
 
     public async Task<Donor> GetDonorByEmailAsync(string email)
-        => await _dbContext.Donors.AsNoTracking().SingleOrDefaultAsync(donor => donor.Email!.Equals(email) && donor.Active);
+        => await _dbContext.Donors
+        .AsNoTracking()
+        .SingleOrDefaultAsync(donor => donor.Email!.Equals(email) && donor.Active);
+
+    public async Task<Donor> GetDonorDonationsByEmailAsync(string email)
+        => await _dbContext.Donors
+        .AsNoTracking()
+        .Include(donor => donor.Donations)
+        .SingleOrDefaultAsync(donor => donor.Email!.Equals(email) && donor.Active);
 
     public async Task<bool> ExistActiveDonorWithEmail(string email) 
         => await _dbContext.Donors.AnyAsync(donor => donor.Email!.Equals(email) && donor.Active);

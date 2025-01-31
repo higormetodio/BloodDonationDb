@@ -14,7 +14,7 @@ public class DonationReceiverCreatedDomainEventBuilder
             .RuleFor(d => d.Name, faker => donationReceiver.Receiver!.Name)
             .RuleFor(d => d.Email, faker => donationReceiver.Receiver!.Email)
             .RuleFor(d => d.BloodType, faker => donationReceiver.BloodStock!.BloodType)
-            .RuleFor(Builder => Builder.RhFactor, faker => donationReceiver.BloodStock!.RhFactor)
+            .RuleFor(d => d.RhFactor, faker => donationReceiver.BloodStock!.RhFactor)
             .RuleFor(d => d.Quantity, faker => donationReceiver.Quantity);
     }
 }

@@ -5,7 +5,6 @@ using BloodDonationDb.API.Token;
 using BloodDonationDb.Application;
 using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Infrastructure;
-using BloodDonationDb.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
 
 var AUTHENTICATION_TYPE = "Bearer";
