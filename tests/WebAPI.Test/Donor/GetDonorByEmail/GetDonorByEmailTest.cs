@@ -1,6 +1,4 @@
 ﻿using BloodDonationDb.Exceptions;
-using CommomTestUtilities.Commands;
-using CommomTestUtilities.Queries;
 using CommomTestUtilities.Token;
 using FluentAssertions;
 using System.Globalization;
@@ -8,7 +6,7 @@ using System.Net;
 using System.Text.Json;
 using WebAPI.Test.InlineData;
 
-namespace WebAPI.Test.Donor.GetByEmail;
+namespace WebAPI.Test.Donor.GetDonorByEmail;
 public class GetDonorByEmailTest : BloodDonationDbClassFixture
 {
     public const string METHOD = "donor";
