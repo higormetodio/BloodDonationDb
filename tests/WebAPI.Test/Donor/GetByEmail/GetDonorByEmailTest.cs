@@ -42,8 +42,8 @@ public class GetDonorByEmailTest : BloodDonationDbClassFixture
         responseData.RootElement.GetProperty("isDonor").GetBoolean().Should().Be(_donor.IsDonor);
         responseData.RootElement.GetProperty("lastDonation").GetString().Should().BeNullOrEmpty(_donor.LastDonation.ToString());
         responseData.RootElement.GetProperty("nextDonation").GetString().Should().BeNullOrEmpty(_donor.NextDonation.ToString());
-        responseData.RootElement.GetProperty("bloodType").GetInt32().Should().Be((int)_donor.BloodType);
-        responseData.RootElement.GetProperty("rhFactor").GetInt32().Should().Be((int)_donor.RhFactor);
+        responseData.RootElement.GetProperty("bloodType").GetString().Should().Be(_donor.BloodType.ToString());
+        responseData.RootElement.GetProperty("rhFactor").GetString().Should().Be(_donor.RhFactor.ToString());
         responseData.RootElement.GetProperty("address").GetProperty("street").GetString().Should().Be(_donor.Address?.Street);
         responseData.RootElement.GetProperty("active").GetBoolean().Should().Be(_donor.Active);
     }

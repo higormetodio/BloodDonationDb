@@ -25,8 +25,8 @@ public class GetDonorByEmailTest
         result.BirthDate.Should().NotBe(default(DateTime));
         result.Gender.Should().BeOneOf(Gender.Male, Gender.Female);
         result.Weight.Should().BeInRange(140, 210);
-        result.BloodType.Should().BeOneOf([BloodType.A, BloodType.B, BloodType.O, BloodType.AB]);
-        result.RhFactor.Should().BeOneOf([RhFactor.Positive, RhFactor.Negative]);
+        result.BloodType.Should().BeOneOf(["A", "B", "O", "AB"]);
+        result.RhFactor.Should().BeOneOf(["Positive", "Negative"]);
         result.Address.Should().NotBeNull();
         result.Active.Should().BeTrue();
         result.LastDonation.Should().BeNull();
