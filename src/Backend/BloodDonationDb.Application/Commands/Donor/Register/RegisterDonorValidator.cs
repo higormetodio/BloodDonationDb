@@ -20,7 +20,6 @@ public class RegisterDonorValidator : AbstractValidator<RegisterDonorCommand>
             addressRule.RuleFor(address => address!.Number).NotEmpty().WithMessage(ResourceMessageException.ADDRESS_NUMBER_EMPTY);
             addressRule.RuleFor(address => address!.City).NotEmpty().WithMessage(ResourceMessageException.ADDRESS_CITY_EMPTY);
             addressRule.RuleFor(address => address!.State).NotEmpty().WithMessage(ResourceMessageException.ADDRESS_STATE_EMPTY);
-            addressRule.RuleFor(address => address!.ZipCode).NotEmpty().WithMessage(ResourceMessageException.ADDRESS_ZIP_EMPTY);
             addressRule.RuleFor(address => address!.Country).NotEmpty().WithMessage(ResourceMessageException.ADDRESS_COUNTRY_EMPTY);
         });
         When(donor => !string.IsNullOrEmpty(donor.Email), () =>
