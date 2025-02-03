@@ -151,6 +151,15 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to ZIP code not found.
+        /// </summary>
+        public static string CEP_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("CEP_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Donation date cannot be empty.
         /// </summary>
         public static string DONATION_DATE_EMPTY {

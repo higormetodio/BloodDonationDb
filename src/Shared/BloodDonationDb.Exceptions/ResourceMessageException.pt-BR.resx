@@ -204,4 +204,7 @@
   <data name="DONATION_DATE_GREATER_CURRENT_DATE" xml:space="preserve">
     <value>A data de doação não pode ser maior que a data atual</value>
   </data>
+  <data name="CEP_NOT_FOUND" xml:space="preserve">
+    <value>CEP não encontrado</value>
+  </data>
 </root>

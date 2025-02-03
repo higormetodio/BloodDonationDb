@@ -25,6 +25,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                     services.Remove(descriptor);
                 }
 
+                services.AddHttpClient();
+
                 var provaider = services.AddEntityFrameworkInMemoryDatabase()
                     .BuildServiceProvider();
 
