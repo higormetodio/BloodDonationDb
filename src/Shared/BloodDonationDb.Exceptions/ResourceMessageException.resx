@@ -204,4 +204,7 @@
   <data name="DONATION_DATE_GREATER_CURRENT_DATE" xml:space="preserve">
     <value>The donation date cannot be greater than the current date</value>
   </data>
+  <data name="CEP_NOT_FOUND" xml:space="preserve">
+    <value>ZIP code not found</value>
+  </data>
 </root>

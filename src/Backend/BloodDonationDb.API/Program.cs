@@ -20,6 +20,8 @@ builder.Services.AddControllers(options => options.Filters.Add(typeof(ExceptionF
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddApplication();
