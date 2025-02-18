@@ -1,5 +1,7 @@
 ﻿using BloodDonationDb.Application.Models.DonorDonation;
+using BloodDonationDb.Domain.Entities;
 using BloodDonationDb.Domain.Enums;
+using BloodDonationDb.Domain.Events;
 using BloodDonationDb.Domain.Repositories.BloodStock;
 using BloodDonationDb.Domain.Repositories.DonationDonor;
 using BloodDonationDb.Domain.Repositories.Donor;
@@ -52,6 +54,14 @@ public class RegisterDonationDonorHandler : IRequestHandler<RegisterDonationDono
         donor.UpdateLastDonation(donationDonor.When);
 
         _donorUpdateOnlyRepository.UpdateDonor(donor);
+
+        if (bloodStock.MinimumQuantityReached)
+        {
+            donationDonor.AddDomainEvent(
+                new BloodStockMinimumQuantityDomainEvent(
+                    bloodStock.Id, bloodStock.BloodType, bloodStock.RhFactor, bloodStock.Quantity)
+                );
+        }
 
         await _unitOfWork.CommitAsync();
 

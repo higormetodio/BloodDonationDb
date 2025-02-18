@@ -19,6 +19,12 @@ public class BloodStockRepository : IBloodStockReadOnlyRepository, IBloodStockUp
         .AsNoTracking()
         .SingleOrDefaultAsync(stock => stock.BloodType.Equals(bloodType) && stock.RhFactor.Equals(rhFactor));
 
+    public async Task<BloodStock> GetBloodStockByIdAsync(Guid id)
+        => await _dbContext.BloodStocks
+        .AsNoTracking()
+        .SingleOrDefaultAsync(stock => stock.Id == id);
+         
+
     public void UpdateBloodStock(BloodStock bloodStock)
         => _dbContext.BloodStocks.Update(bloodStock);
 }
