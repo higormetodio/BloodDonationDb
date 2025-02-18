@@ -38,15 +38,15 @@ public class AuthenticatedUserFilter : IAsyncAuthorizationFilter
         }
         catch (SecurityTokenExpiredException)
         {
-            context.Result = new UnauthorizedObjectResult(new ResponseError("Token expired"));
+            context.Result = new UnauthorizedObjectResult(new ResponseErrorViewModel("Token expired"));
         }
         catch (BloodDonationDbException ex)
         {
-            context.Result = new UnauthorizedObjectResult(new ResponseError(ex.Message));
+            context.Result = new UnauthorizedObjectResult(new ResponseErrorViewModel(ex.Message));
         }
         catch
         {
-            context.Result = new UnauthorizedObjectResult(new ResponseError(ResourceMessageException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE));
+            context.Result = new UnauthorizedObjectResult(new ResponseErrorViewModel(ResourceMessageException.USER_WITHOUT_PERMISSION_ACCESS_RESOURCE));
         }
     }
 

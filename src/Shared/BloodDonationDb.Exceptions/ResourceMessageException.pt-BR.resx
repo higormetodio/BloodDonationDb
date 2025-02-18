@@ -207,4 +207,7 @@
   <data name="CEP_NOT_FOUND" xml:space="preserve">
     <value>CEP não encontrado</value>
   </data>
+  <data name="RECEIVER_NOT_FOUND" xml:space="preserve">
+    <value>Recebedor não encontrado</value>
+  </data>
 </root>

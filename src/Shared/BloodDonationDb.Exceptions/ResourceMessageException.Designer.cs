@@ -295,6 +295,15 @@ namespace BloodDonationDb.Exceptions {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Receiver not found.
+        /// </summary>
+        public static string RECEIVER_NOT_FOUND {
+            get {
+                return ResourceManager.GetString("RECEIVER_NOT_FOUND", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to RH Factor not supported.
         /// </summary>
         public static string RH_FACTOR_NOT_SUPPORTED {
