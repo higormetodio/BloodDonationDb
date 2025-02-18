@@ -1,5 +1,6 @@
 using BloodDonationDb.Domain.Entities;
 using BloodDonationDb.Domain.SeedWorks;
+using BloodDonationDb.Infrastructure.Persistence.Outbox;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 
@@ -17,6 +18,7 @@ public class BloodDonationDbContext : DbContext
     public DbSet<Receiver> Receivers { get; set; }
     public DbSet<User> Users { get; set; }
     public DbSet<RefreshToken> RefreshTokens { get; set; }
+    public DbSet<OutboxMessage> OutboxMessages { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

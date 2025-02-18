@@ -4,7 +4,7 @@ using BloodDonationDb.Domain.ValueObjects;
 
 namespace BloodDonationDb.Domain.Entities;
 
-public class Donor : Entity, IAggregateRoot
+public class Donor : AggregateRoot
 {
     public Donor(string name, string email, DateTime birthDate, Gender gender, int weight, BloodType bloodType, RhFactor rhFactor, Address address)
     {

@@ -24,7 +24,7 @@ builder.Services.AddHttpClient();
 
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 

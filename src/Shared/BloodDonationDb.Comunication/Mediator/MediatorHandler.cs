@@ -11,8 +11,8 @@ public class MediatorHandler : IMediatorHandler
         _mediator = mediator;
     }
 
-    public Task PublishDomainEvent<TEvent>(TEvent domainEvent) where TEvent : IDomainEvent
+    public Task PublishDomainEvent<TEvent>(TEvent domainEvent, CancellationToken cancellationToken) where TEvent : IDomainEvent
     {
-        return _mediator.Publish(domainEvent);
+        return _mediator.Publish(domainEvent, cancellationToken);
     }
 }
