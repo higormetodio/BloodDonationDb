@@ -1,7 +1,7 @@
-﻿using Azure;
-using BloodDonationDb.API.Attributes;
+﻿using BloodDonationDb.API.Attributes;
 using BloodDonationDb.Application.Commands.User.Register;
 using BloodDonationDb.Application.Models.User;
+using BloodDonationDb.Comunication.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -19,7 +19,7 @@ public class UserController : MyBloodDonationDbController
 
     [HttpPost]
     [ProducesResponseType(typeof(RegisterUserViewModel), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorViewModel), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Register([FromBody] RegisterUserCommand command)
     {
         var result = await _mediator.Send(command);

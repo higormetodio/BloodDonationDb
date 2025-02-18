@@ -1,14 +1,14 @@
 ﻿namespace BloodDonationDb.Comunication.Responses;
-public class ResponseError
+public class ResponseErrorViewModel
 {
     public IList<string> Errors { get; private set; }
 
-    public ResponseError(IList<string> errors)
+    public ResponseErrorViewModel(IList<string> errors)
     {
         Errors = errors;
     }
 
-    public ResponseError(string error)
+    public ResponseErrorViewModel(string error)
     {
         Errors = new List<string> { error };
     }

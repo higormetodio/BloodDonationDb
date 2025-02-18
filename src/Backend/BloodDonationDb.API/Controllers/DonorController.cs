@@ -1,10 +1,10 @@
-﻿using Azure;
-using BloodDonationDb.API.Attributes;
+﻿using BloodDonationDb.API.Attributes;
 using BloodDonationDb.Application.Commands.Donor.Register;
 using BloodDonationDb.Application.Models;
 using BloodDonationDb.Application.Models.Donor;
 using BloodDonationDb.Application.Queries.Donor.GetDonor;
 using BloodDonationDb.Application.Queries.Donor.GetDonorDonationsByEmail;
+using BloodDonationDb.Comunication.Responses;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,7 +23,7 @@ public class DonorController : MyBloodDonationDbController
     [HttpGet]
     [Route("{email}")]
     [ProducesResponseType(typeof(DonorViewModel), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorViewModel), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetDonor([FromRoute]string email)
     {
         var query = new GetDonorByEmailQuery(email);
@@ -36,7 +36,7 @@ public class DonorController : MyBloodDonationDbController
     [HttpGet()]
     [Route("donations/{email}")]
     [ProducesResponseType(typeof(DonorDonationsViewModel), StatusCodes.Status200OK)]
-    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status404NotFound)]
+    [ProducesResponseType(typeof(ResponseErrorViewModel), StatusCodes.Status404NotFound)]
     public async Task<IActionResult> GetDonorDonations([FromRoute] string email)
     {
         var query = new GetDonorDonationsByEmailQuery(email);
@@ -48,7 +48,7 @@ public class DonorController : MyBloodDonationDbController
 
     [HttpPost]
     [ProducesResponseType(typeof(RegisterDonorViewModel), StatusCodes.Status201Created)]
-    [ProducesResponseType(typeof(ResponseError), StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(typeof(ResponseErrorViewModel), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> RegisterDonor([FromBody]RegisterDonorCommand command)
     {
         var result = await _mediator.Send(command);
