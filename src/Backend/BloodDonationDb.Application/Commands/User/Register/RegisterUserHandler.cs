@@ -1,20 +1,19 @@
-﻿using BloodDonationDb.Application.Models;
+﻿using BloodDonationDb.Application.Models.Token;
 using BloodDonationDb.Application.Models.User;
+using BloodDonationDb.Domain.Entities;
 using BloodDonationDb.Domain.Repositories.Token;
 using BloodDonationDb.Domain.Repositories.User;
 using BloodDonationDb.Domain.Security.Criptography;
 using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Domain.SeedWorks;
-using BloodDonationDb.Domain.Entities;
-using MediatR;
-using BloodDonationDb.Application.Models.Token;
+using BloodDonationDb.Domain.Services.LoggedUser;
 using BloodDonationDb.Exceptions;
 using BloodDonationDb.Exceptions.ExceptionsBase;
-using BloodDonationDb.Domain.Services.LoggedUser;
+using MediatR;
 
 namespace BloodDonationDb.Application.Commands.User.Register;
 
-public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultViewModel<RegisterUserViewModel>>
+public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, RegisterUserViewModel>
 {
     private readonly IUserWriteOnlyRepository _userWriteOnlyRepository;
     private readonly IUserReadOnlyRepository _userReadOnlyRepository;
@@ -44,7 +43,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
         _loggedUser = loggedUser;
     }
 
-    public async Task<ResultViewModel<RegisterUserViewModel>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public async Task<RegisterUserViewModel> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
     {
         var loggedUser = await _loggedUser.User();
         
@@ -70,7 +69,7 @@ public class RegisterUserHandler : IRequestHandler<RegisterUserCommand, ResultVi
             }
         };
 
-        return ResultViewModel<RegisterUserViewModel>.Success(responseRegisterUser);
+        return responseRegisterUser;
     }
 
     private async Task<string> CreateAndSaveRefreshToken(Domain.Entities.User user)

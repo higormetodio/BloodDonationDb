@@ -5,7 +5,6 @@ using BloodDonationDb.API.Token;
 using BloodDonationDb.Application;
 using BloodDonationDb.Domain.Security.Tokens;
 using BloodDonationDb.Infrastructure;
-using BloodDonationDb.Infrastructure.Extensions;
 using Microsoft.OpenApi.Models;
 
 var AUTHENTICATION_TYPE = "Bearer";
@@ -21,9 +20,11 @@ builder.Services.AddControllers(options => options.Filters.Add(typeof(ExceptionF
 
 builder.Services.AddRouting(options => options.LowercaseUrls = true);
 
+builder.Services.AddHttpClient();
+
 builder.Services.AddHttpContextAccessor();
 
-builder.Services.AddApplication();
+builder.Services.AddApplication(builder.Configuration);
 builder.Services.AddInfrastructure(builder.Configuration);
 builder.Services.AddScoped<ITokenProvider, HttpContextTokenValue>();
 

@@ -16,7 +16,7 @@ public class RegisterDonorCommandBuilder
         return new Faker<RegisterDonorCommand>()
             .RuleFor(donor => donor.Name, faker => faker.Person.FirstName)
             .RuleFor(donor => donor.Email, (f, donor) => f.Internet.Email(donor.Email))
-            .RuleFor(donor => donor.BirthDate, faker => faker.Date.Between(new DateTime(DateTime.UtcNow.Year - 68, 1, 1), new DateTime(DateTime.UtcNow.Year - 1, 1, 1)))
+            .RuleFor(donor => donor.BirthDate, faker => faker.Date.Between(new DateTime(DateTime.UtcNow.Year - 68, 1, 1), new DateTime(DateTime.UtcNow.Year - 19, 1, 1)))
             .RuleFor(donor => donor.Gender, faker => faker.PickRandom<Gender>())
             .RuleFor(donor => donor.Weight, faker => faker.Random.Int(50, 140))
             .RuleFor(donor => donor.BloodType, faker => faker.PickRandom<BloodType>())

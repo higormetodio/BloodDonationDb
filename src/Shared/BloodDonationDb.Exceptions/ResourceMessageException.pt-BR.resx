@@ -186,4 +186,28 @@
   <data name="BIRTH_DATE_INVALID" xml:space="preserve">
     <value>Data de nacimento inválida</value>
   </data>
+  <data name="DONATION_DATE_EMPTY" xml:space="preserve">
+    <value>Data de docação não pode estar em branco</value>
+  </data>
+  <data name="DONATION_QUANTITY_NOT_ALLOWED" xml:space="preserve">
+    <value>A quantidade doada deve estar entre 420 e 470 ml</value>
+  </data>
+  <data name="DONOR_CANNOT_DONATION" xml:space="preserve">
+    <value>Doador ainda não pode fazer docação. Doador é menor de 18 anos.</value>
+  </data>
+  <data name="DONATION_NOT_ALLOWED_NEXT_DONATION_DATE" xml:space="preserve">
+    <value>A próxima data de doação para o doador deve ser a partir de</value>
+  </data>
+  <data name="DONOR_NOT_FOUND" xml:space="preserve">
+    <value>Doador não encontrado</value>
+  </data>
+  <data name="DONATION_DATE_GREATER_CURRENT_DATE" xml:space="preserve">
+    <value>A data de doação não pode ser maior que a data atual</value>
+  </data>
+  <data name="CEP_NOT_FOUND" xml:space="preserve">
+    <value>CEP não encontrado</value>
+  </data>
+  <data name="RECEIVER_NOT_FOUND" xml:space="preserve">
+    <value>Recebedor não encontrado</value>
+  </data>
 </root>

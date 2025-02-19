@@ -8,7 +8,9 @@ using Microsoft.Extensions.DependencyInjection;
 namespace WebAPI.Test;
 public class CustomWebApplicationFactory : WebApplicationFactory<Program>
 {
-    private BloodDonationDb.Domain.Entities.User _user = default;
+    private BloodDonationDb.Domain.Entities.User? _user = default;
+    private BloodDonationDb.Domain.Entities.Donor? _donor = default;
+    private BloodDonationDb.Domain.Entities.BloodStock? _bloodStock = default;
     private string _password = string.Empty;
 
     protected override void ConfigureWebHost(IWebHostBuilder builder)
@@ -22,6 +24,8 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
                 {
                     services.Remove(descriptor);
                 }
+
+                services.AddHttpClient();
 
                 var provaider = services.AddEntityFrameworkInMemoryDatabase()
                     .BuildServiceProvider();
@@ -42,19 +46,26 @@ public class CustomWebApplicationFactory : WebApplicationFactory<Program>
             });
     }
 
-    public string GetEmail() => _user.Email;
+    public string GetEmail() => _user!.Email;
 
     public string GetPassword() => _password;   
 
-    public string GetName() => _user.Name;
+    public string GetName() => _user!.Name;
 
-    public Guid GetUserId() => _user.Id;
+    public Guid GetUserId() => _user!.Id;
+
+    public BloodDonationDb.Domain.Entities.Donor GetDonor() => _donor!;
+
 
     private void StartDatabase(BloodDonationDbContext context)
     {
         (_user, _password) = UserBuilder.Builder();
+        _donor = DonorBuilder.Builder();
+        _bloodStock = BloodStockBuilder.Builder(_donor);
 
         context.Users.Add(_user);
+        context.Donors.Add(_donor);
+        context.BloodStocks.Add(_bloodStock);
 
         context.SaveChanges();
     }

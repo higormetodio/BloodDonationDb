@@ -1,4 +1,5 @@
 ﻿using BloodDonationDb.Domain.Entities;
+using BloodDonationDb.Domain.Enums;
 using BloodDonationDb.Domain.ValueObjects;
 using Bogus;
 
@@ -8,7 +9,8 @@ public class ReceiverBuilder
     public static Receiver Builder()
     {
         return new Faker<Receiver>()
-            .CustomInstantiator(faker => new Receiver(faker.Person.FullName, faker.Person.Email, new Address(
+            .CustomInstantiator(faker => new Receiver(faker.Person.FullName, faker.Person.Email, faker.PickRandom<BloodType>(), faker.PickRandom<RhFactor>(),
+            new Address(
                 faker.Address.StreetAddress(),
                 faker.Address.BuildingNumber(),
                 faker.Address.City(),

@@ -2,7 +2,7 @@ using BloodDonationDb.Domain.SeedWorks;
 
 namespace BloodDonationDb.Domain.Entities;
 
-public abstract class Donation : Entity, IAggregateRoot
+public abstract class Donation : AggregateRoot
 {
     protected Donation(DateTime when, int quantity)
     {

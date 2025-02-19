@@ -2,7 +2,7 @@
 
 namespace BloodDonationDb.Domain.Entities;
 
-public class User : Entity, IAggregateRoot
+public class User : AggregateRoot
 {
     public User(string name, string email, string password)
     {

@@ -181,9 +181,33 @@
     <value>In address, country cannot be empty.</value>
   </data>
   <data name="BIRTH_DATE_EMPTY" xml:space="preserve">
-    <value>Birth date cannou be empty</value>
+    <value>Birth date cannot be empty</value>
   </data>
   <data name="BIRTH_DATE_INVALID" xml:space="preserve">
     <value>Birth date invalid</value>
+  </data>
+  <data name="DONATION_DATE_EMPTY" xml:space="preserve">
+    <value>Donation date cannot be empty</value>
+  </data>
+  <data name="DONATION_QUANTITY_NOT_ALLOWED" xml:space="preserve">
+    <value>The quantity donat must be between 420 and 470 ml</value>
+  </data>
+  <data name="DONOR_CANNOT_DONATION" xml:space="preserve">
+    <value>Donor cannot yet make a donation. Donor is under 18 years old.</value>
+  </data>
+  <data name="DONATION_NOT_ALLOWED_NEXT_DONATION_DATE" xml:space="preserve">
+    <value>The next donation date for the donor must be from</value>
+  </data>
+  <data name="DONOR_NOT_FOUND" xml:space="preserve">
+    <value>Donor not found</value>
+  </data>
+  <data name="DONATION_DATE_GREATER_CURRENT_DATE" xml:space="preserve">
+    <value>The donation date cannot be greater than the current date</value>
+  </data>
+  <data name="CEP_NOT_FOUND" xml:space="preserve">
+    <value>ZIP code not found</value>
+  </data>
+  <data name="RECEIVER_NOT_FOUND" xml:space="preserve">
+    <value>Receiver not found</value>
   </data>
 </root>

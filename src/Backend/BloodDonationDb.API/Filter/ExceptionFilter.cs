@@ -24,13 +24,13 @@ public class ExceptionFilter : IExceptionFilter
     private static void HandleProjectException(BloodDonationDbException blooddonationDbException, ExceptionContext context)
     {
         context.HttpContext.Response.StatusCode = (int)blooddonationDbException.GetStatusCode();
-        context.Result = new ObjectResult(new ResponseError(blooddonationDbException.GetErrorMessages()));
+        context.Result = new ObjectResult(new ResponseErrorViewModel(blooddonationDbException.GetErrorMessages()));
     }
 
     private void ThrowUnknowException(ExceptionContext context)
     {
         context.HttpContext.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
-        context.Result = new ObjectResult(new ResponseError(ResourceMessageException.UNKNOW_ERROR));
+        context.Result = new ObjectResult(new ResponseErrorViewModel(ResourceMessageException.UNKNOW_ERROR));
     }
 
 }

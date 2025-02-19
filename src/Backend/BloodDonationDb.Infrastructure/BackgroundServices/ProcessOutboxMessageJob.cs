@@ -1,54 +1,59 @@
-﻿//using BloodDonationDb.Comunication.Mediator;
-//using BloodDonationDb.Domain.SeedWorks;
-//using BloodDonationDb.Infrastructure.Persistence.Outbox;
-//using Microsoft.Extensions.DependencyInjection;
-//using Microsoft.Extensions.Hosting;
-//using MongoDB.Driver;
-//using System.Text.Json;
+﻿using BloodDonationDb.Comunication.Mediator;
+using BloodDonationDb.Domain.Events;
+using BloodDonationDb.Domain.SeedWorks;
+using BloodDonationDb.Infrastructure.Converters;
+using BloodDonationDb.Infrastructure.Persistence;
+using BloodDonationDb.Infrastructure.Persistence.Outbox;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
+using MongoDB.Driver;
+using Newtonsoft.Json;
 
-//namespace BloodDonationDb.Infrastructure.BackgroundServices;
+namespace BloodDonationDb.Infrastructure.BackgroundServices;
 
-//public class ProcessOutboxMessageJob : BackgroundService
-//{
-//    private readonly IMongoCollection<OutboxMessage> _collection;
-//    private readonly IMediatorHandler _mediatorHandler;
-//    private readonly IServiceScopeFactory _serviceScopeFactory;
+public class ProcessOutboxMessageJob : BackgroundService
+{
+    private readonly IServiceScopeFactory _serviceScopeFactory;
 
-//    public ProcessOutboxMessageJob(IMongoDatabase mongoDatabase, IMediatorHandler mediatorHandler, IServiceScopeFactory serviceScopeFactory)
-//    {
-//        _collection = mongoDatabase.GetCollection<OutboxMessage>(nameof(OutboxMessage));
-//        _mediatorHandler = mediatorHandler;
-//        _serviceScopeFactory = serviceScopeFactory;
-//    }
-//    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
-//    {
-//        while (!stoppingToken.IsCancellationRequested)
-//        {
-//            var filter = Builders<OutboxMessage>.Filter.Eq(o => o.ProcessedOn, DateTime.MinValue);
+    public ProcessOutboxMessageJob(IServiceScopeFactory serviceScopeFactory)
+    {
+        _serviceScopeFactory = serviceScopeFactory;
+    }
+    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    {
+        while (!stoppingToken.IsCancellationRequested)
+        {            
+            using var scope = _serviceScopeFactory.CreateAsyncScope();
 
-//            var messages = await _collection.Find(filter).ToListAsync();
+            var dbContext = scope.ServiceProvider.GetRequiredService<BloodDonationDbContext>();
+            var publicsher = scope.ServiceProvider.GetRequiredService<IMediatorHandler>();
 
-//            foreach (var outboxMessage in messages)
-//            {
-//                IDomainEvent? domainEvent = JsonSerializer
-//                    .Deserialize<IDomainEvent>(outboxMessage.Content);
+            List<OutboxMessage> messages = await dbContext.Set<OutboxMessage>()
+                                                          .Where(m => m.ProcessedOn == null)
+                                                          .Take(20)
+                                                          .ToListAsync(stoppingToken);          
 
-//                if (domainEvent is null)
-//                {
-//                    continue;
-//                }
+            foreach (var outboxMessage in messages)
+            {
+                var settings = new JsonSerializerSettings();
+                settings.Converters.Add(new DomainEventConverter());
 
-//                await _mediatorHandler.PublishDomainEvent(domainEvent);
+                var domainEvent = JsonConvert.DeserializeObject<IDomainEvent>(outboxMessage.Content, settings);
 
-//                outboxMessage.ProcessedOn = DateTime.UtcNow;
+                if (domainEvent is null)
+                {
+                    continue;
+                }
 
-//                var update = Builders<OutboxMessage>.Update
-//                    .Set(o => o.ProcessedOn, outboxMessage.ProcessedOn);
+                await publicsher.PublishDomainEvent(domainEvent, stoppingToken);
 
-//                _collection.UpdateOne(filter, update);
-//            }
+                outboxMessage.ProcessedOn = DateTime.UtcNow;               
+            }
 
-//            await Task.Delay(TimeSpan.FromSeconds(60), stoppingToken);
-//        }        
-//    }
-//}
+            await dbContext.SaveChangesAsync();
+
+            await Task.Delay(TimeSpan.FromSeconds(20), stoppingToken);
+        }
+    }
+}

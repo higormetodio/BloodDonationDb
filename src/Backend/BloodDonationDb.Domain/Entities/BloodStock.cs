@@ -1,10 +1,12 @@
 using BloodDonationDb.Domain.Enums;
+using BloodDonationDb.Domain.Events;
 using BloodDonationDb.Domain.SeedWorks;
 using BloodDonationDb.Domain.ValueObjects;
+using MongoDB.Bson.Serialization.Attributes;
 
 namespace BloodDonationDb.Domain.Entities;
 
-public class BloodStock : Entity, IAggregateRoot
+public class BloodStock : AggregateRoot
 {
     public BloodStock(BloodType bloodType, RhFactor rhFactor)
     {
@@ -23,18 +25,20 @@ public class BloodStock : Entity, IAggregateRoot
     public RhFactor RhFactor { get; private set; }
     public int Quantity { get; private set; }
     public bool MinimumQuantityReached { get; private set; }
-    
+
+    [BsonIgnore]
     public IEnumerable<DonationDonor>? DonationDonors { get; private set; }
+    [BsonIgnore]
     public IEnumerable<DonationReceiver>? DonationReceivers { get; private set; }
 
 
-    public void UpdateStockDonation(int quantity)
+    public void UpdateStockDonationDonor(int quantity)
     {
         Quantity += quantity;
         IsMinimumQuantityReached();
     }
 
-    public void UpdateStockReceived(int quantity)
+    public void UpdateStockDonationReceiver(int quantity)
     {
         Quantity -= quantity;
         IsMinimumQuantityReached();

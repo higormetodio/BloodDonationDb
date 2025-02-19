@@ -4,7 +4,7 @@ using BloodDonationDb.Domain.ValueObjects;
 
 namespace BloodDonationDb.Domain.Entities;
 
-public class Donor : Entity, IAggregateRoot
+public class Donor : AggregateRoot
 {
     public Donor(string name, string email, DateTime birthDate, Gender gender, int weight, BloodType bloodType, RhFactor rhFactor, Address address)
     {
@@ -14,8 +14,6 @@ public class Donor : Entity, IAggregateRoot
         Gender = gender;
         Weight = weight;
         IsDonor = CanBeADonor(birthDate);
-        LastDonation = DateTime.Now.Date;
-        NextDonation = DateTime.Now.Date;
         BloodType = bloodType;
         RhFactor = rhFactor;
         Address = address;
@@ -31,8 +29,8 @@ public class Donor : Entity, IAggregateRoot
     public Gender Gender { get; private set; }
     public int Weight { get; private set; }
     public bool IsDonor { get; private set; }
-    public DateTime LastDonation { get; private set; }
-    public DateTime NextDonation { get; private set; }
+    public DateTime? LastDonation { get; private set; }
+    public DateTime? NextDonation { get; private set; }
     public BloodType BloodType { get; private set; }
     public RhFactor RhFactor { get; private set; }
     public Address? Address { get; private set; }
@@ -54,9 +52,9 @@ public class Donor : Entity, IAggregateRoot
 
     public void UpdateLastDonation(DateTime lastDonation)
     {
-        LastDonation = lastDonation;
+        LastDonation = lastDonation.Date;
 
-        NextDonation = lastDonation.AddDays(Gender == Gender.Female ? BloodDonationRuleConstants.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstants.DAYS_NEXT_DONATION_MAN);
+        NextDonation = lastDonation.Date.AddDays(Gender == Gender.Female ? BloodDonationRuleConstants.DAYS_NEXT_DONATION_WOMAN : BloodDonationRuleConstants.DAYS_NEXT_DONATION_MAN);
     }
     
     public void ToInactive()

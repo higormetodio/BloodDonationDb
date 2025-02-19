@@ -50,72 +50,72 @@ namespace BloodDonationDb.Infrastructure.Persistence.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("461e27ba-50fa-4b57-bd76-bfe2cf34f568"),
+                            Id = new Guid("4eb21f56-068b-44ca-acfb-815b1c6c79e2"),
                             BloodType = 1,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(7853),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(5167),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 1
                         },
                         new
                         {
-                            Id = new Guid("15eef3f4-a8b8-4635-9deb-16d43f8b9674"),
+                            Id = new Guid("7c5484cd-6ac1-4285-b737-4e15d13d6877"),
                             BloodType = 1,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8870),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7528),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 2
                         },
                         new
                         {
-                            Id = new Guid("fa7a398d-1501-47d5-94a3-c7b248023e53"),
+                            Id = new Guid("55c138d4-adab-493c-8405-19595bdbf161"),
                             BloodType = 2,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8873),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7535),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 1
                         },
                         new
                         {
-                            Id = new Guid("ca3c1ca6-c570-4d4d-a332-3158fee61460"),
+                            Id = new Guid("1681bf4b-1d05-422b-8461-38b4e967e172"),
                             BloodType = 2,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8874),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7537),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 2
                         },
                         new
                         {
-                            Id = new Guid("d191dcd2-4628-48dd-8621-88c660fbb7c5"),
+                            Id = new Guid("5218ec5a-a46a-45dc-a4dc-bce3f91c2712"),
                             BloodType = 4,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8875),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7539),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 1
                         },
                         new
                         {
-                            Id = new Guid("c125e184-ace3-4bd4-a006-e9808de06ae5"),
+                            Id = new Guid("ae521613-9cc6-4bc5-abe4-32d9dca5e973"),
                             BloodType = 4,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8889),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7541),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 2
                         },
                         new
                         {
-                            Id = new Guid("5bbbdb40-5e18-4723-8cae-c4954a50aa2d"),
+                            Id = new Guid("ea216860-45a7-4b29-8768-7909da4206f1"),
                             BloodType = 3,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8890),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7559),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 1
                         },
                         new
                         {
-                            Id = new Guid("ca833add-4bea-4aa6-9ce2-ddaded39c26a"),
+                            Id = new Guid("2d1b5075-eb72-47f2-b23e-d94a2602a8b7"),
                             BloodType = 3,
-                            CreateOn = new DateTime(2025, 1, 15, 18, 52, 19, 160, DateTimeKind.Utc).AddTicks(8891),
+                            CreateOn = new DateTime(2025, 2, 14, 18, 57, 53, 378, DateTimeKind.Utc).AddTicks(7561),
                             MinimumQuantityReached = true,
                             Quantity = 0,
                             RhFactor = 2
@@ -210,14 +210,14 @@ namespace BloodDonationDb.Infrastructure.Persistence.Migrations
                     b.Property<bool>("IsDonor")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastDonation")
+                    b.Property<DateTime?>("LastDonation")
                         .HasColumnType("datetime");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
 
-                    b.Property<DateTime>("NextDonation")
+                    b.Property<DateTime?>("NextDonation")
                         .HasColumnType("datetime");
 
                     b.Property<int>("RhFactor")
@@ -244,6 +244,9 @@ namespace BloodDonationDb.Infrastructure.Persistence.Migrations
                     b.Property<bool>("Active")
                         .HasColumnType("bit");
 
+                    b.Property<int>("BloodType")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("CreateOn")
                         .HasColumnType("datetime");
 
@@ -254,6 +257,9 @@ namespace BloodDonationDb.Infrastructure.Persistence.Migrations
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(255)");
+
+                    b.Property<int>("RhFactor")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -315,6 +321,34 @@ namespace BloodDonationDb.Infrastructure.Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users", (string)null);
+                });
+
+            modelBuilder.Entity("BloodDonationDb.Infrastructure.Persistence.Outbox.OutboxMessage", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Content")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Error")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OccurredOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime?>("ProcessedOn")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Type")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OutboxMessages", (string)null);
                 });
 
             modelBuilder.Entity("BloodDonationDb.Domain.Entities.DonationDonor", b =>

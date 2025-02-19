@@ -3,6 +3,8 @@
   <ItemGroup>
     <PackageReference Include="FluentValidation" Version="11.11.0" />
     <PackageReference Include="MediatR" Version="12.4.1" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.1" />
+    <PackageReference Include="PDFsharp" Version="6.1.1" />
   </ItemGroup>
 
   <ItemGroup>
@@ -10,6 +12,10 @@
     <ProjectReference Include="..\..\Shared\BloodDonationDb.Exceptions\BloodDonationDb.Exceptions.csproj" />
     <ProjectReference Include="..\BloodDonationDb.Domain\BloodDonationDb.Domain.csproj" />
     <ProjectReference Include="..\BloodDonationDb.Infrastructure\BloodDonationDb.Infrastructure.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Models\User\" />
   </ItemGroup>
 
   <PropertyGroup>

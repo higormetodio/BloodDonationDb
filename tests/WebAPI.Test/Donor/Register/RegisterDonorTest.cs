@@ -1,4 +1,5 @@
-﻿using BloodDonationDb.Exceptions;
+﻿using BloodDonationDb.Application.DTOs;
+using BloodDonationDb.Exceptions;
 using CommomTestUtilities.Commands;
 using CommomTestUtilities.Token;
 using FluentAssertions;
@@ -23,6 +24,14 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
 
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
+
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
         var response = await PostAsync(method: METHOD, command: command, token: token);
@@ -33,10 +42,39 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
 
         var responseData = await JsonDocument.ParseAsync(responseBody);
 
+        responseData.RootElement.GetProperty("donorId").GetString().Should().NotBeNullOrWhiteSpace();
         responseData.RootElement.GetProperty("name").GetString().Should().Be(command.Name);
-        responseData.RootElement.GetProperty("email").GetString().Should().Be(command.Email);
-        responseData.RootElement.GetProperty("bloodType").GetInt32().Should().Be((int)command.BloodType);
-        responseData.RootElement.GetProperty("rhFactor").GetInt32().Should().Be((int)command.RhFactor);
+    }
+
+    [Theory]
+    [ClassData(typeof(CultureInlineDataTest))]
+    public async Task Error_CEP_Not_Found(string culture)
+    {
+        var command = RegisterDonorCommandBuilder.Builder();
+
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "4180000000",
+            "Brasil");
+
+        var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
+
+        var response = await PostAsync(method: METHOD, command: command, token: token, culture);
+
+        response.StatusCode.Should().Be(HttpStatusCode.NotFound);
+
+        await using var responseBody = await response.Content.ReadAsStreamAsync();
+
+        var responseData = await JsonDocument.ParseAsync(responseBody);
+
+        var errors = responseData.RootElement.GetProperty("errors").EnumerateArray();
+
+        var expectedMessage = ResourceMessageException.ResourceManager.GetString("CEP_NOT_FOUND", new CultureInfo(culture));
+
+        errors.Should().HaveCount(1).And.Contain(e => e.GetString()!.Equals(expectedMessage));
     }
 
     [Theory]
@@ -45,6 +83,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.Name = string.Empty;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -69,6 +114,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.Email = string.Empty;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -93,6 +145,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.Email = "email.com.br";
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -117,6 +176,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.BirthDate = DateTime.MinValue;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -141,6 +207,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.BirthDate = new DateTime(2026, 7, 7);
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -166,6 +239,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.BirthDate = new DateTime(DateTime.UtcNow.Year - 69, 1, 1);
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -190,6 +270,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.Gender = (BloodDonationDb.Domain.Enums.Gender)100;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -217,6 +304,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
         var command = RegisterDonorCommandBuilder.Builder();
 
         command.Weight = weight;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -241,6 +335,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.BloodType = (BloodDonationDb.Domain.Enums.BloodType)100;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
@@ -265,6 +366,13 @@ public class RegisterDonorTest : BloodDonationDbClassFixture
     {
         var command = RegisterDonorCommandBuilder.Builder();
         command.RhFactor = (BloodDonationDb.Domain.Enums.RhFactor)100;
+        command.Address = new BloodDonationDb.Domain.ValueObjects.Address(
+            "",
+            "123",
+            "",
+            "",
+            "41815050",
+            "Brasil");
 
         var token = JwtTokenGeneratorBuilder.Builder().Generate(_userId);
 
