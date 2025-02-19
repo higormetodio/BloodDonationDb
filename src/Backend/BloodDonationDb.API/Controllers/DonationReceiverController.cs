@@ -3,9 +3,11 @@ using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using BloodDonationDb.Application.Commands.DonationReceiver.Register;
 using BloodDonationDb.Application.Models.DonationReceiver;
+using BloodDonationDb.API.Attributes;
 
 namespace BloodDonationDb.API.Controllers;
 
+[AuthenticatedUser]
 public class DonationReceiverController : MyBloodDonationDbController
 {
     private readonly IMediator _mediator;

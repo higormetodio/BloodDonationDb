@@ -13,6 +13,12 @@ public class BloodStockRepository : IBloodStockReadOnlyRepository, IBloodStockUp
         _dbContext = dbContext;
     }
 
+    public async Task<IEnumerable<BloodStock>> GetAllBloodStocksAsync()
+        => await _dbContext
+        .BloodStocks
+        .AsNoTracking()
+        .ToListAsync();
+
     public async Task<BloodStock> GetBloodStockAsync(BloodType bloodType, RhFactor rhFactor)
         => await _dbContext
         .BloodStocks
