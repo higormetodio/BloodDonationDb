@@ -78,6 +78,7 @@ public static class DependecyInjectionExtension
         service.AddScoped<IBloodStockReadOnlyRepository, BloodStockRepository>();
         service.AddScoped<IBloodStockUpdateOnlyRepository, BloodStockRepository>();
         service.AddScoped<IDonationDonorWriteOnlyRepository, DonationDonorRepository>();
+        service.AddScoped<IDonationDonorReadOnlyRepository, DonationDonorRepository>();
         service.AddScoped<IReceiverWriteOnlyRepository, ReceiverRepository>();
         service.AddScoped<IDonationReceiverWriteOnlyRepository, DonationReceiverRepository>();
         service.AddScoped<IReceiverReadOnlyRepository, ReceiverRepository>();

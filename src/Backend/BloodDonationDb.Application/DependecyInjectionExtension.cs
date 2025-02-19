@@ -1,6 +1,7 @@
 ﻿using BloodDonationDb.Application.Commands.User.Register;
 using BloodDonationDb.Application.Services.ConsultaCep;
 using BloodDonationDb.Application.Services.GetCep;
+using BloodDonationDb.Application.Services.ReportPdf;
 using BloodDonationDb.Domain.Entities;
 using BloodDonationDb.Infrastructure.Persistence.MongoDb;
 using Microsoft.Extensions.Configuration;
@@ -26,6 +27,8 @@ public static class DependecyInjectionExtension
     private static void AssApplicationServices(IServiceCollection services)
     {
         services.AddScoped<IGetCepService, GetCepService>();
+        services.AddScoped<IReportPdfService<BloodStock>, ReportPdfService<BloodStock>>();
+        services.AddScoped<IReportPdfService<DonationDonor>, ReportPdfService<DonationDonor>>();
     }
 
     private static void AddMongoDb(IServiceCollection services, IConfiguration configuration)
